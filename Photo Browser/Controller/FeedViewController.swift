@@ -22,17 +22,8 @@ class FeedViewController: UIViewController {
 
         feedCollectionView.delegate = self
         feedCollectionView.dataSource = self
-        
-        let numberOfCellsPerRow = CGFloat(3.0)
-//        feedFlowLayout.minimumInteritemSpacing = 3.0
-//        feedFlowLayout.minimumLineSpacing = 3.0
 
-        
-        var collectionWidth = feedCollectionView.frame.size.width
-        collectionWidth -= feedCollectionView.safeAreaInsets.left + feedCollectionView.safeAreaInsets.right
-        
-        feedFlowLayout.itemSize = CGSize(width: (collectionWidth/numberOfCellsPerRow), height: 100)
-        feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         feedCollectionView.register(UINib.init(nibName: String(describing: FeedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedCollectionViewCell.self))
         
@@ -65,6 +56,14 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 60)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let cellSide = feedCollectionView.frame.size.width/4
+
+        return CGSize(width: cellSide, height: cellSide)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
