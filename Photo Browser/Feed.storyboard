@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-wK-ELX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="876"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ub6-LT-hoD">
                                     <size key="itemSize" width="128" height="128"/>
@@ -27,12 +27,12 @@
                                 <cells/>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Srt-wK-ELX" firstAttribute="top" secondItem="QMR-WR-yFQ" secondAttribute="top" id="3iJ-Pt-LSf"/>
-                            <constraint firstItem="Srt-wK-ELX" firstAttribute="leading" secondItem="QMR-WR-yFQ" secondAttribute="leading" id="YL5-Fi-djn"/>
-                            <constraint firstItem="QMR-WR-yFQ" firstAttribute="trailing" secondItem="Srt-wK-ELX" secondAttribute="trailing" id="ab7-VN-qlC"/>
-                            <constraint firstItem="QMR-WR-yFQ" firstAttribute="bottom" secondItem="Srt-wK-ELX" secondAttribute="bottom" id="vic-8q-ilK"/>
+                            <constraint firstItem="Srt-wK-ELX" firstAttribute="top" secondItem="cJB-id-duu" secondAttribute="top" constant="20" symbolic="YES" id="3iJ-Pt-LSf"/>
+                            <constraint firstItem="Srt-wK-ELX" firstAttribute="leading" secondItem="cJB-id-duu" secondAttribute="leading" id="YL5-Fi-djn"/>
+                            <constraint firstAttribute="trailing" secondItem="Srt-wK-ELX" secondAttribute="trailing" id="ab7-VN-qlC"/>
+                            <constraint firstAttribute="bottom" secondItem="Srt-wK-ELX" secondAttribute="bottom" id="vic-8q-ilK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QMR-WR-yFQ"/>
                     </view>

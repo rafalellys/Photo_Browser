@@ -24,12 +24,15 @@ class FeedViewController: UIViewController {
         feedCollectionView.dataSource = self
         
         let numberOfCellsPerRow = CGFloat(3.0)
-        feedFlowLayout.minimumInteritemSpacing = 3
+//        feedFlowLayout.minimumInteritemSpacing = 3.0
+//        feedFlowLayout.minimumLineSpacing = 3.0
+
         
         var collectionWidth = feedCollectionView.frame.size.width
         collectionWidth -= feedCollectionView.safeAreaInsets.left + feedCollectionView.safeAreaInsets.right
         
-        feedFlowLayout.itemSize = CGSize(width: (collectionWidth/numberOfCellsPerRow)-32, height: 100)
+        feedFlowLayout.itemSize = CGSize(width: (collectionWidth/numberOfCellsPerRow), height: 100)
+        feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         
         feedCollectionView.register(UINib.init(nibName: String(describing: FeedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedCollectionViewCell.self))
         
