@@ -14,7 +14,4 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
-
-
 }
