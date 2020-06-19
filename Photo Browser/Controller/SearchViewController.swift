@@ -9,35 +9,29 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
-    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var searchResultsTableView: UITableView!
     
-    var photos = [Model]()
-
+    var filteredResults: [Model] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredPhotos = [Model]()
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search by term"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         searchResultsTableView.delegate = self
         searchResultsTableView.dataSource = self
         
         searchResultsTableView.register(UINib.init(nibName: String(describing: SearchResultsTableViewCell.self), bundle: Bundle.main), forCellReuseIdentifier: String(describing: SearchResultsTableViewCell.self))
-        
-        NetworkManager.sharedInstance.fetchAllPhotosData { (success, photos) in
-            if success {
-                if let photos = photos {
-                    
-                    self.photos = photos
-                    DispatchQueue.main.async {
-                        self.searchResultsTableView.reloadData()
-                    }
-                }
-            } else {
-                debugPrint("failure fetching")
-            }
-        }
     }
     
 }
@@ -46,14 +40,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
+        return filteredPhotos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: String(describing: SearchResultsTableViewCell.self), for: indexPath) as! SearchResultsTableViewCell
         
-        let photoRow = self.photos[indexPath.row]
+        let photoRow = self.filteredPhotos[indexPath.row]
         
         cell.selectionStyle = .none
         
@@ -62,6 +56,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.usernameLabel.text = photoRow.user?.username
+        cell.descriptionLabel.text = photoRow.description
         
         if let thumb = photoRow.urls?.thumb {
             if let photoURL = URL(string: thumb) {
@@ -69,7 +64,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                     DispatchQueue.main.async {
                         if success {
                             if let imageData = imgData {
-                                //cell.loadingIndicator.stopAnimating()
                                 DispatchQueue.main.async {
                                     if let img = UIImage(data: imageData as Data) {
                                         cell.searchCellImageView.image = img
@@ -95,9 +89,39 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let storyboard = UIStoryboard(name: "PhotoDetails", bundle: Bundle.main)
         let photoDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PhotoDetailsViewController.self)) as! PhotoDetailsViewController
-        let photoRow = self.photos[indexPath.row]
+        let photoRow = self.filteredPhotos[indexPath.row]
         photoDetailsVC.photoModel = photoRow
         self.navigationController?.pushViewController(photoDetailsVC, animated: true)
     }
     
+}
+
+    
+extension SearchViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchTerm = searchController.searchBar.text {
+            if searchTerm.count >= 3 {
+                NetworkManager.sharedInstance.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
+                    guard let self = self else {return}
+                    if success {
+                        if let filteredPhotos = filteredPhotos {
+                            self.filteredPhotos = filteredPhotos
+                            DispatchQueue.main.async {
+                                self.searchResultsTableView.reloadData()
+                            }
+                        }
+                    } else {
+                        debugPrint("failure fetching")
+                    }
+                }
+            } else {
+                self.filteredPhotos.removeAll()
+                DispatchQueue.main.async {
+                    self.searchResultsTableView.reloadData()
+                }
+
+            }
+        }
+    }
 }

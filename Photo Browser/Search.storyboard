@@ -15,12 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NIH-oa-m66">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oy7-rO-K5f">
-                                <rect key="frame" x="0.0" y="144" width="414" height="732"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="876"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -28,17 +24,13 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Oy7-rO-K5f" secondAttribute="bottom" constant="20" symbolic="YES" id="5lW-cA-YUo"/>
                             <constraint firstItem="Oy7-rO-K5f" firstAttribute="leading" secondItem="19x-X6-f9x" secondAttribute="leading" id="GIP-ww-aMi"/>
-                            <constraint firstItem="NIH-oa-m66" firstAttribute="leading" secondItem="19x-X6-f9x" secondAttribute="leading" id="MVG-Bh-dOZ"/>
-                            <constraint firstItem="Oy7-rO-K5f" firstAttribute="top" secondItem="NIH-oa-m66" secondAttribute="bottom" id="ODn-Mr-zKv"/>
-                            <constraint firstItem="NIH-oa-m66" firstAttribute="top" secondItem="19x-X6-f9x" secondAttribute="top" id="Smy-Ok-Y5J"/>
                             <constraint firstItem="19x-X6-f9x" firstAttribute="trailing" secondItem="Oy7-rO-K5f" secondAttribute="trailing" id="UrA-x8-NNs"/>
-                            <constraint firstItem="NIH-oa-m66" firstAttribute="trailing" secondItem="19x-X6-f9x" secondAttribute="trailing" id="aqv-1z-sjz"/>
+                            <constraint firstItem="Oy7-rO-K5f" firstAttribute="top" secondItem="StE-EN-GZG" secondAttribute="top" id="dYI-Bs-49d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="19x-X6-f9x"/>
                     </view>
                     <navigationItem key="navigationItem" id="RYG-e3-XYh"/>
                     <connections>
-                        <outlet property="searchBar" destination="NIH-oa-m66" id="FbG-J6-zFa"/>
                         <outlet property="searchResultsTableView" destination="Oy7-rO-K5f" id="amj-1L-B4d"/>
                     </connections>
                 </viewController>

@@ -10,25 +10,34 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="U6b-Vx-4bR" customClass="HeaderView" customModule="Photo_Browser" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="248"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gr1-aj-eDA">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="248"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjX-Xj-j0E">
-                            <rect key="frame" x="0.0" y="0.0" width="89" height="50"/>
+                            <rect key="frame" x="0.0" y="207.5" width="89" height="24.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" translatesAutoresizingMaskIntoConstraints="NO" id="vka-ne-Sf2" customClass="RoundedCornersImageView" customModule="Photo_Browser" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="8" width="320" height="183.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="183.5" id="qG1-we-Amr"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="vka-ne-Sf2" secondAttribute="trailing" id="8BC-gn-cLQ"/>
                         <constraint firstItem="AjX-Xj-j0E" firstAttribute="leading" secondItem="gr1-aj-eDA" secondAttribute="leading" id="Bfy-bd-pBX"/>
-                        <constraint firstItem="AjX-Xj-j0E" firstAttribute="top" secondItem="gr1-aj-eDA" secondAttribute="top" id="IQW-Ta-Eug"/>
-                        <constraint firstAttribute="bottom" secondItem="AjX-Xj-j0E" secondAttribute="bottom" id="X5K-wq-vgg"/>
+                        <constraint firstItem="vka-ne-Sf2" firstAttribute="leading" secondItem="gr1-aj-eDA" secondAttribute="leading" id="CbR-7u-agr"/>
+                        <constraint firstAttribute="bottom" secondItem="AjX-Xj-j0E" secondAttribute="bottom" constant="16" id="X5K-wq-vgg"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AjX-Xj-j0E" secondAttribute="trailing" constant="20" id="hLo-h2-5gf"/>
+                        <constraint firstItem="AjX-Xj-j0E" firstAttribute="top" secondItem="vka-ne-Sf2" secondAttribute="bottom" constant="16" id="jOJ-pY-g1Q"/>
+                        <constraint firstItem="vka-ne-Sf2" firstAttribute="top" secondItem="gr1-aj-eDA" secondAttribute="top" constant="8" id="tbY-Hg-b9N"/>
                     </constraints>
                 </view>
             </subviews>
@@ -40,9 +49,13 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
+                <outlet property="headerImageView" destination="vka-ne-Sf2" id="3Ai-YJ-Ts1"/>
                 <outlet property="headerTitleLabel" destination="AjX-Xj-j0E" id="NqZ-1T-kuR"/>
             </connections>
-            <point key="canvasLocation" x="139" y="142"/>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <image name="sky" width="1920" height="642"/>
+    </resources>
 </document>

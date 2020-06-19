@@ -11,6 +11,7 @@ import UIKit
 class HeaderView: UICollectionReusableView {
 
     @IBOutlet weak var headerTitleLabel: UILabel!
+    @IBOutlet weak var headerImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct Model : Codable {
 	let id : String?
 	let created_at : String?

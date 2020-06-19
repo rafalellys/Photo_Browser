@@ -19,16 +19,14 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         feedCollectionView.delegate = self
         feedCollectionView.dataSource = self
-
         feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         feedCollectionView.register(UINib.init(nibName: String(describing: FeedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedCollectionViewCell.self))
         
         feedCollectionView.register(UINib(nibName: String(describing: HeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
-        
         
         NetworkManager.sharedInstance.fetchAllPhotosData { [weak self] (success, photos) in
             
@@ -36,7 +34,6 @@ class FeedViewController: UIViewController {
             
             if success {
                 if let photos = photos {
-                    
                     self.photos = photos
                     DispatchQueue.main.async {
                         self.feedCollectionView.reloadData()
@@ -46,7 +43,6 @@ class FeedViewController: UIViewController {
                 debugPrint("failure fetching")
             }
         }
-        
     }
 }
 
@@ -54,13 +50,13 @@ class FeedViewController: UIViewController {
 extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 60)
+        return CGSize(width: collectionView.frame.width, height: 248)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let cellSide = feedCollectionView.frame.size.width/4
-
+        
         return CGSize(width: cellSide, height: cellSide)
     }
     
@@ -77,7 +73,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let trendingPhotos = "Trending photos"
         headerView.headerTitleLabel.font = UIFont(name: "Copperplate", size: 18)
         headerView.headerTitleLabel.text = trendingPhotos
-        
+        headerView.headerTitleLabel.textColor = .darkGray
+        headerView.setNeedsLayout()
         return headerView
     }
     
@@ -95,7 +92,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 NetworkManager.sharedInstance.downloadImageData(imageURL: photoURL) {[weak self] (success, imgData) in
                     
                     guard let _ = self else {return}
-
+                    
                     DispatchQueue.main.async {
                         if success {
                             if let imageData = imgData {
@@ -131,7 +128,5 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         self.navigationController?.pushViewController(photoDetailsVC, animated: true)
         
     }
-    
-    
     
 }

@@ -1,5 +1,5 @@
 //
-//  CircleView.swift
+//  RoundedCornersView.swift
 //  Photo Browser
 //
 //  Created by Rafael Lellys on 2020-06-19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class CircleView: UIView {
+class RoundedCornersImageView: UIImageView {
 
     override func awakeFromNib() {
         
-        layer.cornerRadius = frame.size.height * 0.5
+        layer.cornerRadius = 8.0
         clipsToBounds = true
         
     }

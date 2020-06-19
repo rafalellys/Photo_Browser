@@ -30,8 +30,8 @@ class PhotoDetailsViewController: BaseViewController {
         super.viewDidLoad()
         
         showLoadingIndicator()
-        likesImageView.image = UIImage(named: "heart")
         
+        likesImageView.image = UIImage(named: "heart")
         
          usernameLabel.text = photoModel?.user?.username
                 
