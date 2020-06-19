@@ -12,7 +12,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="KGk-i7-Jjw" customClass="SearchResultsTableViewCell" customModule="Photo_Browser" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -24,11 +24,11 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="TT8-QQ-Wmb" userLabel="all info stack">
-                        <rect key="frame" x="86" y="8" width="214" height="37"/>
+                        <rect key="frame" x="86" y="8" width="214" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x55-5I-yDv">
-                                <rect key="frame" x="0.0" y="0.0" width="107" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <rect key="frame" x="0.0" y="0.0" width="107" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -51,13 +51,23 @@
                             </stackView>
                         </subviews>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyN-At-99f" userLabel="bottom border">
+                        <rect key="frame" x="20" y="65.5" width="280" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="ABR-6f-nnU"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="KyN-At-99f" secondAttribute="trailing" constant="20" id="DvW-Ic-nbx"/>
                     <constraint firstItem="UOd-nF-kgS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Dy4-8P-0ly"/>
-                    <constraint firstAttribute="bottom" secondItem="TT8-QQ-Wmb" secondAttribute="bottom" constant="8" id="E2k-7u-K4r"/>
-                    <constraint firstAttribute="bottom" secondItem="UOd-nF-kgS" secondAttribute="bottom" constant="8" id="KkV-Ca-IKz"/>
+                    <constraint firstItem="KyN-At-99f" firstAttribute="bottom" secondItem="TT8-QQ-Wmb" secondAttribute="bottom" constant="8" id="E2k-7u-K4r"/>
+                    <constraint firstItem="KyN-At-99f" firstAttribute="bottom" secondItem="UOd-nF-kgS" secondAttribute="bottom" constant="8" id="KkV-Ca-IKz"/>
+                    <constraint firstItem="KyN-At-99f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="RRG-Ur-WIG"/>
                     <constraint firstItem="UOd-nF-kgS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="UcM-c9-Gbn"/>
                     <constraint firstItem="TT8-QQ-Wmb" firstAttribute="leading" secondItem="UOd-nF-kgS" secondAttribute="trailing" constant="16" id="WUb-g7-Pqq"/>
+                    <constraint firstAttribute="bottom" secondItem="KyN-At-99f" secondAttribute="bottom" id="Y11-o6-n4D"/>
                     <constraint firstAttribute="trailing" secondItem="TT8-QQ-Wmb" secondAttribute="trailing" constant="20" id="dTv-m3-jUe"/>
                     <constraint firstItem="TT8-QQ-Wmb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="eYX-mz-Ytv"/>
                 </constraints>

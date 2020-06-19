@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct Links : Codable {
 	let linkSelf : String?
 	let html : String?

@@ -30,6 +30,7 @@ class SearchViewController: UIViewController {
         definesPresentationContext = true
         searchResultsTableView.delegate = self
         searchResultsTableView.dataSource = self
+        searchResultsTableView.separatorStyle = .none
         
         searchResultsTableView.register(UINib.init(nibName: String(describing: SearchResultsTableViewCell.self), bundle: Bundle.main), forCellReuseIdentifier: String(describing: SearchResultsTableViewCell.self))
     }
