@@ -26,15 +26,15 @@ final class NetworkManager {
     private let orderByPath = "&order_by="
     
     let imageDataCache = NSCache<NSString, NSData>()
+
     
     //MARK: - Completion Handlers
     typealias APIPhotoModelsCompletionHandler = (_ success: Bool, _ responseObject: [Model]?) -> Void
-    typealias APISinglePhotoModelCompletionHandler = (_ success: Bool, _ responseObject: Model?) -> Void
     
     typealias Parameters = [String: String]
     
     //MARK: - Photos Data
-    func fetchAllPhotosData(orderBy: String, completion: @escaping APIPhotoModelsCompletionHandler) {
+    func fetchPhotosData(orderBy: String, completion: @escaping APIPhotoModelsCompletionHandler) {
         
         guard let url = URL(string: unsplashBaseEndPoint + numberOfItemsPath + orderByPath + orderBy) else {
             debugPrint(APIMessages.invalidUrl)
@@ -136,10 +136,14 @@ final class NetworkManager {
     }
     
     //MARK: - Image Data
-    func downloadImageData(imageURL: URL?, completion: @escaping (_ success: Bool ,_ imgData: NSData?) -> Void) {
+    func downloadImageData(imageURLString: String, completion: @escaping (_ success: Bool ,_ imgData: NSData?) -> Void) {
+    
+        if let cachedImageData = imageDataCache.object(forKey: "Image Data: \(imageURLString)" as NSString) {
+                      debugPrint("image fetched from cache: \(imageURLString)")
+                       completion(true, cachedImageData as NSData)
+        } else {
         
-        guard let url = imageURL else {
-            
+        guard let url = URL(string: imageURLString) else {
             debugPrint(APIMessages.invalidUrl)
             completion(false, nil)
             return
@@ -147,31 +151,34 @@ final class NetworkManager {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethodTypes.get.rawValue
-        
+
         let postSession = URLSession.shared
         urlRequest.cachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
-        
+
         let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
-                
+
                 debugPrint(error?.localizedDescription ?? APIMessages.noData)
                 completion(false, nil)
                 return
             }
-            
+
             guard self.checkHttpResponse(response: response as? HTTPURLResponse) else { return completion(false, nil) }
+
+                self.imageDataCache.setObject(data as NSData, forKey: "Image Data: \(imageURLString)" as NSString)
             
-            if let imgURL = imageURL {
-                self.imageDataCache.setObject(data as NSData, forKey: "Image Data: \(imgURL)" as NSString)
-            }
-            
+            debugPrint("image fetched from network: \(imageURLString)")
+
             completion(true, data as NSData)
-            
+
         }
         task.resume()
+        }
     }
     
 }
+
+
 
 extension NetworkManager {
     

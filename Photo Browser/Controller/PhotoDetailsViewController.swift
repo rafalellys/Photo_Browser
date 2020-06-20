@@ -11,32 +11,17 @@ import UIKit
 class PhotoDetailsViewController: BaseViewController {
     
     @IBOutlet weak var photoImageView: UIImageView!
-    
     @IBOutlet weak var userProfileImageView: UIImageView!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var datePublishedLabel: UILabel!
-    
     @IBOutlet weak var likesCountLabel: UILabel!
-    
     @IBOutlet weak var instagramLogo: UIImageView!
-    
     @IBOutlet weak var descriptionLabel: UILabel!
-    
-    
     @IBOutlet weak var findMeLabel: UILabel!
-    
     @IBOutlet weak var bioLabel: UILabel!
-    
-    
     @IBOutlet weak var instagramProfileLabel: UILabel!
-    
     @IBOutlet weak var likesImageView: UIImageView!
-    
-    
     @IBOutlet weak var socialMediaContainer: UIView!
-    
     @IBOutlet weak var photoContainerHeight: NSLayoutConstraint!
     
     var photoModel: Model?
@@ -79,9 +64,9 @@ class PhotoDetailsViewController: BaseViewController {
             datePublishedLabel.text = UtilityMethods.makeDateWithReadableMonth(dateTobeConverted: validDate)
         }
         
-        guard let photoURLString = photoModel?.urls?.full else {return}
-        if let photoURL = URL(string: photoURLString) {
-            NetworkManager.sharedInstance.downloadImageData(imageURL: photoURL) { [weak self] (success, imgData) in
+        if let photoURLString = photoModel?.urls?.full {
+        
+            NetworkManager.sharedInstance.downloadImageData(imageURLString: photoURLString) { [weak self] (success, imgData) in
                 
                 guard let self = self else {return}
                 
@@ -108,9 +93,8 @@ class PhotoDetailsViewController: BaseViewController {
             }
         }
         
-        guard let userPhotoURLString = photoModel?.user?.profileImage?.medium else {return}
-        if let userPhotoURL = URL(string: userPhotoURLString) {
-            NetworkManager.sharedInstance.downloadImageData(imageURL: userPhotoURL) { [weak self] (success, imgData) in
+        if let userPhotoURLString = photoModel?.user?.profileImage?.medium {
+            NetworkManager.sharedInstance.downloadImageData(imageURLString: userPhotoURLString) { [weak self] (success, imgData) in
                 
                 guard let self = self else {return}
                 
@@ -122,16 +106,15 @@ class PhotoDetailsViewController: BaseViewController {
                                 if let img = UIImage(data: imageData as Data) {
                                     self.userProfileImageView.image = img
                                 }
-                                
                             }
                         }
                     } else {
-                        print("image fetch failed")
+                        debugPrint("image fetch failed")
                     }
                 }
             }
-        }
         
+        }
     }
     
 }

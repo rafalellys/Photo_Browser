@@ -14,7 +14,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var feedCollectionView: UICollectionView!
     
     @IBOutlet weak var feedFlowLayout: UICollectionViewFlowLayout!
-    
+        
     var photos = [Model]()
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class FeedViewController: UIViewController {
         
         feedCollectionView.register(UINib(nibName: String(describing: ListHeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ListHeaderView")
         
-        NetworkManager.sharedInstance.fetchAllPhotosData(orderBy: "latest") { [weak self] (success, photos) in
+        NetworkManager.sharedInstance.fetchPhotosData(orderBy: "latest") { [weak self] (success, photos) in
             
             guard let self = self else {return}
             
@@ -86,8 +86,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let photoRow = self.photos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {
-            if let photoURL = URL(string: thumb) {
-                NetworkManager.sharedInstance.downloadImageData(imageURL: photoURL) {[weak self] (success, imgData) in
+                
+                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
                     
                     guard let _ = self else {return}
                     
@@ -109,7 +109,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         }
                     }
                 }
-            }
         }
         return cell
     }

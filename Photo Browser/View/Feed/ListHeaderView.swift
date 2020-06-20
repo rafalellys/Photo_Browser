@@ -38,7 +38,7 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
         listHeaderCollectionView.collectionViewLayout = flowLayout
         flowLayout.scrollDirection = .horizontal
         
-        NetworkManager.sharedInstance.fetchAllPhotosData(orderBy: "popular") { [weak self] (success, popularPhotos) in
+        NetworkManager.sharedInstance.fetchPhotosData(orderBy: "popular") { [weak self] (success, popularPhotos) in
             
             guard let self = self else {return}
             
@@ -66,8 +66,7 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
         let photoRow = self.popularPhotos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {
-            if let photoURL = URL(string: thumb) {
-                NetworkManager.sharedInstance.downloadImageData(imageURL: photoURL) {[weak self] (success, imgData) in
+                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
                     
                     guard let _ = self else {return}
                     
@@ -89,7 +88,6 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
                         }
                     }
                 }
-            }
         }
         return cell
     }

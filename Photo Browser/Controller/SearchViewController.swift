@@ -63,8 +63,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.descriptionLabel.text = photoRow.description
         
         if let thumb = photoRow.urls?.thumb {
-            if let photoURL = URL(string: thumb) {
-                NetworkManager.sharedInstance.downloadImageData(imageURL: photoURL) { (success, imgData) in
+                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) { (success, imgData) in
                     DispatchQueue.main.async {
                         if success {
                             if let imageData = imgData {
@@ -79,7 +78,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                             debugPrint("image fetch failed")
                         }
                     }
-                }
             }
         }
         
