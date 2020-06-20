@@ -45,6 +45,13 @@
 		051DA3BC249D4C73007B9AFE /* Ancestry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA3AF249D4C73007B9AFE /* Ancestry.swift */; };
 		051DA3C0249D4C73007B9AFE /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA3B3249D4C73007B9AFE /* Tags.swift */; };
 		051DA3C9249D7A4A007B9AFE /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */; };
+		056A7B15249D9AC4004FF4CD /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B14249D9AC4004FF4CD /* AppFonts.swift */; };
+		056A7B1B249D9DE1004FF4CD /* CenteredFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B1A249D9DE1004FF4CD /* CenteredFlowLayout.swift */; };
+		056A7B1E249D9E6A004FF4CD /* FeaturedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B1C249D9E6A004FF4CD /* FeaturedCollectionViewCell.swift */; };
+		056A7B1F249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056A7B1D249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib */; };
+		056A7B23249DB6EA004FF4CD /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */; };
+		056A7B25249DB715004FF4CD /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B24249DB715004FF4CD /* ListHeaderView.swift */; };
+		056A7B27249DBA07004FF4CD /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B26249DBA07004FF4CD /* RoundedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +95,13 @@
 		051DA3AF249D4C73007B9AFE /* Ancestry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ancestry.swift; sourceTree = "<group>"; };
 		051DA3B3249D4C73007B9AFE /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
+		056A7B14249D9AC4004FF4CD /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		056A7B1A249D9DE1004FF4CD /* CenteredFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredFlowLayout.swift; sourceTree = "<group>"; };
+		056A7B1C249D9E6A004FF4CD /* FeaturedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCollectionViewCell.swift; sourceTree = "<group>"; };
+		056A7B1D249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedCollectionViewCell.xib; sourceTree = "<group>"; };
+		056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
+		056A7B24249DB715004FF4CD /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
+		056A7B26249DBA07004FF4CD /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,11 +191,13 @@
 		051DA399249D22FC007B9AFE /* Convenience */ = {
 			isa = PBXGroup;
 			children = (
-				051DA39A249D2311007B9AFE /* UtilityMethods.swift */,
-				051DA3A0249D23A3007B9AFE /* CircleView.swift */,
-				051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */,
 				051DA39C249D2326007B9AFE /* BaseViewController.swift */,
 				051DA39E249D2362007B9AFE /* CustomIndicatorView.swift */,
+				051DA39A249D2311007B9AFE /* UtilityMethods.swift */,
+				056A7B14249D9AC4004FF4CD /* AppFonts.swift */,
+				051DA3A0249D23A3007B9AFE /* CircleView.swift */,
+				056A7B26249DBA07004FF4CD /* RoundedView.swift */,
+				051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */,
 			);
 			path = Convenience;
 			sourceTree = "<group>";
@@ -218,10 +234,15 @@
 		051DA3C6249D5F4A007B9AFE /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				051DA38F249D0A2D007B9AFE /* FeedCollectionViewCell.swift */,
-				051DA390249D0A2D007B9AFE /* FeedCollectionViewCell.xib */,
 				051DA393249D0A9C007B9AFE /* HeaderView.swift */,
 				051DA394249D0A9C007B9AFE /* HeaderView.xib */,
+				056A7B24249DB715004FF4CD /* ListHeaderView.swift */,
+				056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */,
+				056A7B1C249D9E6A004FF4CD /* FeaturedCollectionViewCell.swift */,
+				056A7B1D249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib */,
+				056A7B1A249D9DE1004FF4CD /* CenteredFlowLayout.swift */,
+				051DA38F249D0A2D007B9AFE /* FeedCollectionViewCell.swift */,
+				051DA390249D0A2D007B9AFE /* FeedCollectionViewCell.xib */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -299,9 +320,11 @@
 				051DA361249C8D5E007B9AFE /* Main.storyboard in Resources */,
 				051DA392249D0A2D007B9AFE /* FeedCollectionViewCell.xib in Resources */,
 				051DA374249C8EC5007B9AFE /* Search.storyboard in Resources */,
+				056A7B23249DB6EA004FF4CD /* ListHeaderView.xib in Resources */,
 				051DA398249D0E0E007B9AFE /* PhotoDetails.storyboard in Resources */,
 				051DA396249D0A9C007B9AFE /* HeaderView.xib in Resources */,
 				051DA3A5249D2901007B9AFE /* SearchResultsTableViewCell.xib in Resources */,
+				056A7B1F249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +335,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056A7B27249DBA07004FF4CD /* RoundedView.swift in Sources */,
 				051DA38D249D0956007B9AFE /* PhotoDetailsViewController.swift in Sources */,
 				051DA389249D0742007B9AFE /* NetworkManager.swift in Sources */,
+				056A7B1B249D9DE1004FF4CD /* CenteredFlowLayout.swift in Sources */,
 				051DA3BC249D4C73007B9AFE /* Ancestry.swift in Sources */,
 				051DA3A1249D23A3007B9AFE /* CircleView.swift in Sources */,
 				051DA3B9249D4C73007B9AFE /* Source.swift in Sources */,
@@ -322,6 +347,7 @@
 				051DA3A4249D2901007B9AFE /* SearchResultsTableViewCell.swift in Sources */,
 				051DA370249C8E92007B9AFE /* SearchViewController.swift in Sources */,
 				051DA384249C95F9007B9AFE /* Sponsor.swift in Sources */,
+				056A7B25249DB715004FF4CD /* ListHeaderView.swift in Sources */,
 				051DA35A249C8D5E007B9AFE /* AppDelegate.swift in Sources */,
 				051DA382249C95F9007B9AFE /* Links.swift in Sources */,
 				051DA39D249D2326007B9AFE /* BaseViewController.swift in Sources */,
@@ -337,8 +363,10 @@
 				051DA3C9249D7A4A007B9AFE /* RoundedCornersView.swift in Sources */,
 				051DA36E249C8E83007B9AFE /* FeedViewController.swift in Sources */,
 				051DA380249C95F9007B9AFE /* Urls.swift in Sources */,
+				056A7B15249D9AC4004FF4CD /* AppFonts.swift in Sources */,
 				051DA391249D0A2D007B9AFE /* FeedCollectionViewCell.swift in Sources */,
 				051DA35C249C8D5E007B9AFE /* SceneDelegate.swift in Sources */,
+				056A7B1E249D9E6A004FF4CD /* FeaturedCollectionViewCell.swift in Sources */,
 				051DA39F249D2362007B9AFE /* CustomIndicatorView.swift in Sources */,
 				051DA3B6249D4C73007B9AFE /* Category.swift in Sources */,
 			);

@@ -22,13 +22,13 @@ class FeedViewController: UIViewController {
         
         feedCollectionView.delegate = self
         feedCollectionView.dataSource = self
-        feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+//        feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         feedCollectionView.register(UINib.init(nibName: String(describing: FeedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedCollectionViewCell.self))
         
-        feedCollectionView.register(UINib(nibName: String(describing: HeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
+        feedCollectionView.register(UINib(nibName: String(describing: ListHeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ListHeaderView")
         
-        NetworkManager.sharedInstance.fetchAllPhotosData { [weak self] (success, photos) in
+        NetworkManager.sharedInstance.fetchAllPhotosData(orderBy: "latest") { [weak self] (success, photos) in
             
             guard let self = self else {return}
             
@@ -66,15 +66,16 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader,withReuseIdentifier: "\(HeaderView.self)",for: indexPath) as? HeaderView else {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader,withReuseIdentifier: "\(ListHeaderView.self)",for: indexPath) as? ListHeaderView else {
             fatalError("Invalid view type")
         }
         
-        let trendingPhotos = "Trending photos"
-        headerView.headerTitleLabel.font = UIFont(name: "Copperplate", size: 18)
-        headerView.headerTitleLabel.text = trendingPhotos
-        headerView.headerTitleLabel.textColor = .darkGray
-        headerView.setNeedsLayout()
+//        let trendingPhotos = "Trending photos"
+//        headerView.headerTitleLabel.font = UIFont(name: "Copperplate", size: 18)
+//        headerView.headerTitleLabel.text = trendingPhotos
+//        headerView.headerTitleLabel.textColor = .darkGray
+//        UtilityMethods.setShadowOnLabel(headerView.headerTopLabel)
+//        headerView.setNeedsLayout()
         return headerView
     }
     

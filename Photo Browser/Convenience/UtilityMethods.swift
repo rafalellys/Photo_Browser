@@ -20,6 +20,14 @@ class UtilityMethods {
         view.layer.shadowOffset = CGSize(width: 0.7, height: 1.0)
     }
     
+    class func setShadowOnLabel(_ view : UILabel) {
+           view.layer.masksToBounds = false
+           view.layer.shadowColor = UIColor.lightGray.cgColor
+           view.layer.shadowOpacity = 0.7
+           view.layer.shadowRadius = 2
+        view.layer.shadowOffset = CGSize(width: 0.7, height: 0.5)
+       }
+    
     class func setShadowOnImageView(_ view : UIImageView) {
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.lightGray.cgColor

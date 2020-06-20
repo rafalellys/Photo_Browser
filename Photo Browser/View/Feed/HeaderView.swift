@@ -13,6 +13,8 @@ class HeaderView: UICollectionReusableView {
     @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerImageView: UIImageView!
     
+    @IBOutlet weak var headerTopLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

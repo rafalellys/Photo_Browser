@@ -31,8 +31,9 @@ class PhotoDetailsViewController: BaseViewController {
         
         showLoadingIndicator()
         
-        likesImageView.image = UIImage(named: "heart")
-        
+        likesImageView.image = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
+        likesImageView.tintColor = .darkGray
+
          usernameLabel.text = photoModel?.user?.username
                 
                 if let likes = photoModel?.likes {

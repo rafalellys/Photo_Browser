@@ -23,6 +23,7 @@ final class NetworkManager {
     private let unsplashClientId = "qTK-KmVJTrzaP2yFWMQ3jIh_mQXSziamlezYGWZ7Kvs"
     private let clientIdPath = "?client_id="
     private let searchQueryPath = "&query="
+    private let orderByPath = "&order_by="
     
     let imageDataCache = NSCache<NSString, NSData>()
     
@@ -70,9 +71,9 @@ final class NetworkManager {
     }
     
     //MARK: - Photos Data
-    func fetchAllPhotosData(completion: @escaping APIPhotoModelsCompletionHandler) {
+    func fetchAllPhotosData(orderBy: String, completion: @escaping APIPhotoModelsCompletionHandler) {
         
-        guard let url = URL(string: unsplashBaseEndPoint + clientIdPath + unsplashClientId + numberOfItemsPath) else {
+        guard let url = URL(string: unsplashBaseEndPoint + clientIdPath + unsplashClientId + numberOfItemsPath + orderByPath + orderBy) else {
             debugPrint(APIMessages.invalidUrl)
             completion(false, nil)
             return

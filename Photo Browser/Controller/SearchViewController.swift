@@ -12,7 +12,6 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchResultsTableView: UITableView!
     
-    var filteredResults: [Model] = []
     let searchController = UISearchController(searchResultsController: nil)
     var filteredPhotos = [Model]()
     
@@ -26,6 +25,8 @@ class SearchViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search by term"
+        searchController.searchBar.searchTextField.font = UIFont(name: "Avenir", size: 15)
+
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchResultsTableView.delegate = self

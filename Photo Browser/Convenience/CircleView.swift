@@ -14,7 +14,6 @@ class CircleView: UIView {
         
         layer.cornerRadius = frame.size.height * 0.5
         clipsToBounds = true
-        
     }
 
 }
