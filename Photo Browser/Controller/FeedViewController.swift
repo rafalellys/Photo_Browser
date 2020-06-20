@@ -55,7 +55,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellSide = feedCollectionView.frame.size.width/4
+        let cellSide = feedCollectionView.frame.size.width/5
         
         return CGSize(width: cellSide, height: cellSide)
     }

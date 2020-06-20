@@ -126,4 +126,18 @@ extension SearchViewController: UISearchResultsUpdating {
             }
         }
     }
+    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
+//        perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
+//    }
+//
+//    @objc func reload(_ searchBar: UISearchBar) {
+//        guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "" else {
+//            print("nothing to search")
+//            return
+//        }
+//
+//        print(query)
+//    }
 }

@@ -20,6 +20,18 @@ class PhotoDetailsViewController: BaseViewController {
     
     @IBOutlet weak var likesCountLabel: UILabel!
     
+    @IBOutlet weak var instagramLogo: UIImageView!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    
+    @IBOutlet weak var findMeLabel: UILabel!
+    
+    @IBOutlet weak var bioLabel: UILabel!
+    
+    
+    @IBOutlet weak var instagramProfileLabel: UILabel!
+    
     @IBOutlet weak var likesImageView: UIImageView!
     
     @IBOutlet weak var photoContainerHeight: NSLayoutConstraint!
@@ -35,6 +47,17 @@ class PhotoDetailsViewController: BaseViewController {
         likesImageView.tintColor = .darkGray
 
          usernameLabel.text = photoModel?.user?.username
+        descriptionLabel.text = photoModel?.description ?? photoModel?.alt_description
+        
+        bioLabel.text = photoModel?.user?.bio
+        if let instagramProfile = photoModel?.user?.instagram_username {
+            instagramProfileLabel.text = "@" + instagramProfile
+        } else {
+            instagramLogo.isHidden = true
+            instagramProfileLabel.isHidden = true
+            findMeLabel.isHidden = true
+        }
+            
                 
                 if let likes = photoModel?.likes {
                 likesCountLabel.text = "\(String(describing: likes))"

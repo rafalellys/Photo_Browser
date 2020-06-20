@@ -19,10 +19,10 @@ final class NetworkManager {
     //MARK: - Endpoints
     private let unsplashBaseEndPoint = "https://api.unsplash.com/photos"
     private let searchEndPoint = "https://api.unsplash.com/search/photos"
-    private let numberOfItemsPath = "&per_page=30"
+    private let numberOfItemsPath = "?per_page=30"
     private let unsplashClientId = "qTK-KmVJTrzaP2yFWMQ3jIh_mQXSziamlezYGWZ7Kvs"
     private let clientIdPath = "?client_id="
-    private let searchQueryPath = "&query="
+    private let searchQueryPath = "?query="
     private let orderByPath = "&order_by="
     
     let imageDataCache = NSCache<NSString, NSData>()
@@ -30,50 +30,13 @@ final class NetworkManager {
     //MARK: - Completion Handlers
     typealias APIPhotoModelsCompletionHandler = (_ success: Bool, _ responseObject: [Model]?) -> Void
     typealias APISinglePhotoModelCompletionHandler = (_ success: Bool, _ responseObject: Model?) -> Void
-
-    typealias Parameters = [String: String]
     
-    func fetchDailyFeaturedPhoto(completion: @escaping APISinglePhotoModelCompletionHandler) {
-        
-        guard let url = URL(string: unsplashBaseEndPoint + clientIdPath + unsplashClientId + numberOfItemsPath) else {
-            debugPrint(APIMessages.invalidUrl)
-            completion(false, nil)
-            return
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = HTTPMethodTypes.get.rawValue
-        
-        let postSession = URLSession.shared
-        urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-        
-        let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
-            guard let data = data, error == nil else {
-                debugPrint(error?.localizedDescription ?? APIMessages.noData)
-                completion(false, nil)
-                return
-            }
-            
-            guard self.checkHttpResponse(response: response as? HTTPURLResponse) else { return completion(false, nil) }
-            do {
-                
-                let photoModelDecoded = try JSONDecoder().decode(Model.self, from: data)
-                
-                completion(true, photoModelDecoded)
-                
-            } catch let jsonError {
-                debugPrint(jsonError)
-                completion(false, nil)
-            }
-        }
-        task.resume()
-        
-    }
+    typealias Parameters = [String: String]
     
     //MARK: - Photos Data
     func fetchAllPhotosData(orderBy: String, completion: @escaping APIPhotoModelsCompletionHandler) {
         
-        guard let url = URL(string: unsplashBaseEndPoint + clientIdPath + unsplashClientId + numberOfItemsPath + orderByPath + orderBy) else {
+        guard let url = URL(string: unsplashBaseEndPoint + numberOfItemsPath + orderByPath + orderBy) else {
             debugPrint(APIMessages.invalidUrl)
             completion(false, nil)
             return
@@ -81,6 +44,13 @@ final class NetworkManager {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethodTypes.get.rawValue
+        
+        let headers = [
+            "Authorization": "Client-ID \(unsplashClientId)",
+            "Content-Type" : "application/json"
+        ]
+        
+        urlRequest.allHTTPHeaderFields = headers
         
         let postSession = URLSession.shared
         urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
@@ -112,51 +82,58 @@ final class NetworkManager {
     }
     
     func fetchPhotosByTerm(searchTerm: String, completion: @escaping APIPhotoModelsCompletionHandler) {
-           
-           guard let url = URL(string: searchEndPoint + clientIdPath + unsplashClientId + searchQueryPath + searchTerm) else {
-               debugPrint(APIMessages.invalidUrl)
-               completion(false, nil)
-               return
-           }
-           
-           var urlRequest = URLRequest(url: url)
-           urlRequest.httpMethod = HTTPMethodTypes.get.rawValue
-           
-           let postSession = URLSession.shared
-           urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-           
-           let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
-               guard let data = data, error == nil else {
-                   debugPrint(error?.localizedDescription ?? APIMessages.noData)
-                   completion(false, nil)
-                   return
-               }
-               
-               guard self.checkHttpResponse(response: response as? HTTPURLResponse) else { return completion(false, nil) }
-               
-               var filteredResults = [Model]()
-               
-               do {
-                   let photoModelsDecoded = try JSONDecoder().decode(SearchResultsModel.self, from: data)
-                   print(photoModelsDecoded)
-                   
-                   if let photoModelsResults = photoModelsDecoded.results {
-                       //array of photo models
+        
+        guard let url = URL(string: searchEndPoint + searchQueryPath + searchTerm) else {
+            debugPrint(APIMessages.invalidUrl)
+            completion(false, nil)
+            return
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethodTypes.get.rawValue
+        
+        let headers = [
+                  "Authorization": "Client-ID \(unsplashClientId)",
+                  "Content-Type" : "application/json"
+              ]
+              
+              urlRequest.allHTTPHeaderFields = headers
+        
+        let postSession = URLSession.shared
+        urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+        
+        let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
+            guard let data = data, error == nil else {
+                debugPrint(error?.localizedDescription ?? APIMessages.noData)
+                completion(false, nil)
+                return
+            }
+            
+            guard self.checkHttpResponse(response: response as? HTTPURLResponse) else { return completion(false, nil) }
+            
+            var filteredResults = [Model]()
+            
+            do {
+                let photoModelsDecoded = try JSONDecoder().decode(SearchResultsModel.self, from: data)
+                print(photoModelsDecoded)
+                
+                if let photoModelsResults = photoModelsDecoded.results {
+                    //array of photo models
                     for eachPhoto in photoModelsResults {
-                           filteredResults.append(eachPhoto)
-                       }
-                   }
-
-                   completion(true, filteredResults)
-               
-               } catch let jsonError {
-                   debugPrint(jsonError)
-                   completion(false, nil)
-               }
-           }
-           task.resume()
-           
-       }
+                        filteredResults.append(eachPhoto)
+                    }
+                }
+                
+                completion(true, filteredResults)
+                
+            } catch let jsonError {
+                debugPrint(jsonError)
+                completion(false, nil)
+            }
+        }
+        task.resume()
+        
+    }
     
     //MARK: - Image Data
     func downloadImageData(imageURL: URL?, completion: @escaping (_ success: Bool ,_ imgData: NSData?) -> Void) {
