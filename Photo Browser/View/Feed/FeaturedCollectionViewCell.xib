@@ -40,6 +40,9 @@
                 <constraint firstAttribute="trailing" secondItem="1aR-hO-2Cd" secondAttribute="trailing" id="viq-Ts-EPB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="popularPhotoImageView" destination="fnF-A7-pja" id="4vs-Sp-0bu"/>
+            </connections>
             <point key="canvasLocation" x="139" y="142"/>
         </collectionViewCell>
     </objects>

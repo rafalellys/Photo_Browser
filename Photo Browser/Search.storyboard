@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="hR7-h1-zCd">
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" id="MRr-jn-mq2" customClass="SearchViewController" customModule="Photo_Browser" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="19x-X6-f9x"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="RYG-e3-XYh"/>
+                    <navigationItem key="navigationItem" id="RYG-e3-XYh"/>
                     <connections>
                         <outlet property="searchResultsTableView" destination="Oy7-rO-K5f" id="amj-1L-B4d"/>
                     </connections>

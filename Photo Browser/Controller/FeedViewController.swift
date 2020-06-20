@@ -70,12 +70,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             fatalError("Invalid view type")
         }
         
-//        let trendingPhotos = "Trending photos"
-//        headerView.headerTitleLabel.font = UIFont(name: "Copperplate", size: 18)
-//        headerView.headerTitleLabel.text = trendingPhotos
-//        headerView.headerTitleLabel.textColor = .darkGray
-//        UtilityMethods.setShadowOnLabel(headerView.headerTopLabel)
-//        headerView.setNeedsLayout()
+        headerView.delegate = self
+        
         return headerView
     }
     
@@ -131,3 +127,17 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
 }
+
+
+extension FeedViewController: ListHeaderDelegate {
+    
+    func itemSelected(photo: Model) {
+         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+               let storyboard = UIStoryboard(name: "PhotoDetails", bundle: Bundle.main)
+               let photoDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PhotoDetailsViewController.self)) as! PhotoDetailsViewController
+               let photoRow = photo
+               photoDetailsVC.photoModel = photoRow
+               self.navigationController?.pushViewController(photoDetailsVC, animated: true)
+    }
+}
+    

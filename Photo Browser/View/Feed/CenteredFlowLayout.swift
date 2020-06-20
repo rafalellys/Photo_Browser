@@ -11,7 +11,7 @@ import UIKit
 class CenteredFlowLayout: UICollectionViewFlowLayout {
     
     let activeDistance: CGFloat = 200
-    let zoomFactor: CGFloat = 0.2
+    let zoomFactor: CGFloat = 0.1
     
     override init() {
         super.init()
