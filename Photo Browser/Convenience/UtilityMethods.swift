@@ -78,6 +78,7 @@ class UtilityMethods {
         return formattedDate
     }
 }
+
 extension String {
     
     func makeDateWithReadableMonth(dateTobeConverted: String?) -> String {

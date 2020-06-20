@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Feed View Controller-->
+        <!--Photo Browser-->
         <scene sceneID="V0v-BV-Vq3">
             <objects>
                 <viewController storyboardIdentifier="FeedViewController" id="MVD-RT-LVb" customClass="FeedViewController" customModule="Photo_Browser" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QMR-WR-yFQ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Aho-bV-aBp"/>
+                    <navigationItem key="navigationItem" title="Photo Browser" id="Aho-bV-aBp"/>
                     <connections>
                         <outlet property="feedCollectionView" destination="Srt-wK-ELX" id="9fK-VM-LJB"/>
                         <outlet property="feedFlowLayout" destination="Ub6-LT-hoD" id="AgS-83-QLD"/>

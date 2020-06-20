@@ -9,10 +9,8 @@
 import UIKit
 
 
-let fontSetForWidth : CGFloat = 375.0
-
 enum AppFonts: String {
-    case Regular = "Times"
+    case Regular = "Avenir Next"
     case Medium = "Poppins-Medium"
     case SemiBold = "Poppins-SemiBold"
     
@@ -21,14 +19,11 @@ enum AppFonts: String {
     }
 }
 
-enum StandardSize: CGFloat {
-    case sMin = 8.0
-    case s0 = 11.0
-    case s1 = 13.0
-    case s2 = 14.0
-    case s3 = 16.0
-    case s4 = 17.0
-    case s5 = 20.0
-    case s6 = 25.0
-    
+enum Size: CGFloat {
+    case h1 = 30.0
+    case h2 = 25.0
+    case h3 = 20.0
+    case h4 = 17.0
+    case h5 = 16.0
+    case h6 = 14.0
 }

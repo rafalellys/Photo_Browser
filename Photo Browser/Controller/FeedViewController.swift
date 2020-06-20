@@ -19,10 +19,16 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
+             NSAttributedString.Key.font: UIFont(name: "Avenir Next", size: 30) ??
+                                     UIFont.systemFont(ofSize: 30)]
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         feedCollectionView.delegate = self
         feedCollectionView.dataSource = self
-//        feedCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         feedCollectionView.register(UINib.init(nibName: String(describing: FeedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedCollectionViewCell.self))
         

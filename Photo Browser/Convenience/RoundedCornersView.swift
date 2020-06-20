@@ -11,10 +11,8 @@ import UIKit
 class RoundedCornersImageView: UIImageView {
 
     override func awakeFromNib() {
-        
         layer.cornerRadius = 8.0
         clipsToBounds = true
-        
     }
 
 }

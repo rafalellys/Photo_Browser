@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
     
     @IBOutlet weak var searchResultsTableView: UITableView!
     
@@ -26,9 +26,11 @@ class SearchViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search by term"
         searchController.searchBar.searchTextField.font = UIFont(name: "Avenir", size: 15)
-
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
         searchResultsTableView.delegate = self
         searchResultsTableView.dataSource = self
         searchResultsTableView.separatorStyle = .none
@@ -110,7 +112,7 @@ extension SearchViewController: UISearchResultsUpdating {
                         if let filteredPhotos = filteredPhotos {
                             self.filteredPhotos = filteredPhotos
                             DispatchQueue.main.async {
-                                self.searchResultsTableView.reloadData()
+                                self.animateTable(self.searchResultsTableView)
                             }
                         }
                     } else {
@@ -126,18 +128,4 @@ extension SearchViewController: UISearchResultsUpdating {
             }
         }
     }
-    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
-//        perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
-//    }
-//
-//    @objc func reload(_ searchBar: UISearchBar) {
-//        guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "" else {
-//            print("nothing to search")
-//            return
-//        }
-//
-//        print(query)
-//    }
 }
