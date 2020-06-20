@@ -33,7 +33,7 @@ var overlay: UIView?
                 indicatorView = CustomIndicatorView(frame: CGRect(x: x, y: y, width: 66, height: 66))
                 indicatorView?.layer.cornerRadius = 6
                 
-                let indicator = UIActivityIndicatorView(style: .gray)
+                let indicator = UIActivityIndicatorView(style: .medium)
                 indicator.center = CGPoint(x: 33, y: 33)
                 indicator.startAnimating()
                 

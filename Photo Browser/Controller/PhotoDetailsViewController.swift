@@ -26,6 +26,17 @@ class PhotoDetailsViewController: BaseViewController {
     
     var photoModel: Model?
     
+    deinit {
+        debugPrint("details deinit called")
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        debugPrint("View will disapppear")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +60,7 @@ class PhotoDetailsViewController: BaseViewController {
         
     
         bioLabel.text = photoModel?.user?.bio
+        
         if let instagramProfile = photoModel?.user?.instagram_username {
             instagramProfileLabel.text = "@" + instagramProfile
         } else {

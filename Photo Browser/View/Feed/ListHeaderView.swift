@@ -63,6 +63,8 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FeaturedCollectionViewCell.self), for: indexPath) as! FeaturedCollectionViewCell
         
+        cell.popularPhotoImageView.image = UIImage(named:"placeholder")
+
         let photoRow = self.popularPhotos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {

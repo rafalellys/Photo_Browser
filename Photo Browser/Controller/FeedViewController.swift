@@ -83,6 +83,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCollectionViewCell", for: indexPath) as! FeedCollectionViewCell
         
+        cell.feedCellImageView.image = UIImage(named:"placeholder")
+
         let photoRow = self.photos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {

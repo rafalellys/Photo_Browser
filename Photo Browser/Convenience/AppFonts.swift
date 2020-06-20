@@ -11,8 +11,8 @@ import UIKit
 
 enum AppFonts: String {
     case Regular = "Avenir Next"
-    case Medium = "Poppins-Medium"
-    case SemiBold = "Poppins-SemiBold"
+    case Medium = "AvenirNext-Medium"
+    case SemiBold = "AvenirNext-DemiBold"
     
     func of(size: CGFloat) -> UIFont? {
         return UIFont(name: self.rawValue, size: size)

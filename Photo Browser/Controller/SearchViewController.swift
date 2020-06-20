@@ -19,6 +19,18 @@ class SearchViewController: BaseViewController {
       return searchController.searchBar.text?.isEmpty ?? true
     }
     
+    deinit {
+          debugPrint("deinit search results called")
+          
+      }
+      
+      override func viewWillDisappear(_ animated: Bool) {
+          super.viewWillDisappear(animated)
+          
+          debugPrint("search results View will disapppear")
+          
+      }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +47,15 @@ class SearchViewController: BaseViewController {
         searchResultsTableView.dataSource = self
         searchResultsTableView.separatorStyle = .none
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+            tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
+        
         searchResultsTableView.register(UINib.init(nibName: String(describing: SearchResultsTableViewCell.self), bundle: Bundle.main), forCellReuseIdentifier: String(describing: SearchResultsTableViewCell.self))
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }
@@ -51,6 +71,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: String(describing: SearchResultsTableViewCell.self), for: indexPath) as! SearchResultsTableViewCell
         
+        cell.searchCellImageView.image = UIImage(named:"placeholder")
+
+        
         let photoRow = self.filteredPhotos[indexPath.row]
         
         cell.selectionStyle = .none
@@ -63,7 +86,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.descriptionLabel.text = photoRow.description
         
         if let thumb = photoRow.urls?.thumb {
-                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) { (success, imgData) in
+                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) { [weak self] (success, imgData) in
+                    
+                    guard let _ = self else {return}
+                    
                     DispatchQueue.main.async {
                         if success {
                             if let imageData = imgData {
