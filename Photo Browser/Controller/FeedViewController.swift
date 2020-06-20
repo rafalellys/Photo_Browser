@@ -19,11 +19,6 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
-             NSAttributedString.Key.font: UIFont(name: "Avenir Next", size: 30) ??
-                                     UIFont.systemFont(ofSize: 30)]
         
         navigationController?.navigationBar.prefersLargeTitles = true
         

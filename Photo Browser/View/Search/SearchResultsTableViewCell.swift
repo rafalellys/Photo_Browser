@@ -13,19 +13,20 @@ class SearchResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var searchCellImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
     @IBOutlet weak var descriptionLabel: UILabel!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        dateLabel.textColor = .lightGray
+        usernameLabel.textColor = .darkGray
+        descriptionLabel.textColor = .darkGray
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

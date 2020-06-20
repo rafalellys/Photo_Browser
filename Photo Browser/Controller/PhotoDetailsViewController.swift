@@ -48,22 +48,28 @@ class PhotoDetailsViewController: BaseViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         
-        likesImageView.image = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
+        datePublishedLabel.textColor = .lightGray
+        descriptionLabel.textColor = .darkGray
         likesImageView.tintColor = .darkGray
+        usernameLabel.textColor = .darkGray
+        instagramProfileLabel.textColor = .lightGray
+        findMeLabel.textColor = .darkGray
+        bioLabel.textColor = .lightGray
+        likesCountLabel.textColor = .darkGray
         
+        likesImageView.image = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
+
         usernameLabel.text = photoModel?.user?.username
         descriptionLabel.text = photoModel?.description ?? photoModel?.alt_description
         
-        print(photoModel?.user?.twitter_username)
-        
-        
+    
         bioLabel.text = photoModel?.user?.bio
         if let instagramProfile = photoModel?.user?.instagram_username {
             instagramProfileLabel.text = "@" + instagramProfile
         } else {
             socialMediaContainer.isHidden = true
         }
-        
+                
         
         if let likes = photoModel?.likes {
             likesCountLabel.text = "\(String(describing: likes))"

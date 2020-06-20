@@ -16,16 +16,19 @@ protocol ListHeaderDelegate: class {
 class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var listHeaderCollectionView: UICollectionView!
+    @IBOutlet weak var popularLabel: UILabel!
+    @IBOutlet weak var latestLabel: UILabel!
     
     let flowLayout = CenteredFlowLayout()
-    
     var popularPhotos = [Model]()
-    
     public weak var delegate: ListHeaderDelegate?
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        popularLabel.textColor = .darkGray
+        latestLabel.textColor = .darkGray
         
         listHeaderCollectionView.register(UINib.init(nibName: String(describing: FeaturedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeaturedCollectionViewCell.self))
         

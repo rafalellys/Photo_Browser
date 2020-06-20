@@ -88,7 +88,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="latestLabel" destination="HoJ-U3-SrX" id="nf5-qN-OcU"/>
                 <outlet property="listHeaderCollectionView" destination="OfX-sy-nze" id="NBF-RF-Nd2"/>
+                <outlet property="popularLabel" destination="5Z7-hD-bY7" id="TbH-RW-sVj"/>
             </connections>
             <point key="canvasLocation" x="139" y="103"/>
         </view>
