@@ -15,6 +15,8 @@ class SearchViewController: BaseViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var filteredPhotos = [Model]()
     
+    private var pendingRequestWorkItem: DispatchWorkItem?
+
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
@@ -42,6 +44,8 @@ class SearchViewController: BaseViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        searchController.searchBar.delegate = self
         
         searchResultsTableView.delegate = self
         searchResultsTableView.dataSource = self
@@ -125,31 +129,72 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
     
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+           pendingRequestWorkItem?.cancel()
+
+           let requestWorkItem = DispatchWorkItem { [weak self] in
+            self?.searchTerm()
+           }
+
+           pendingRequestWorkItem = requestWorkItem
+           DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
+                                         execute: requestWorkItem)
+       }
+    
+    
+    func searchTerm(){
+    if let searchTerm = searchController.searchBar.text {
+        if searchTerm.count >= 3 {
+            NetworkManager.sharedInstance.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
+                guard let self = self else {return}
+                if success {
+                    if let filteredPhotos = filteredPhotos {
+                        self.filteredPhotos = filteredPhotos
+                        DispatchQueue.main.async {
+                            self.animateTable(self.searchResultsTableView)
+                        }
+                    }
+                } else {
+                    debugPrint("failure fetching")
+                }
+            }
+        } else {
+            self.filteredPhotos.removeAll()
+            DispatchQueue.main.async {
+                self.searchResultsTableView.reloadData()
+            }
+
+        }
+        }
+        
+    }
+
     
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchTerm = searchController.searchBar.text {
-            if searchTerm.count >= 3 {
-                NetworkManager.sharedInstance.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
-                    guard let self = self else {return}
-                    if success {
-                        if let filteredPhotos = filteredPhotos {
-                            self.filteredPhotos = filteredPhotos
-                            DispatchQueue.main.async {
-                                self.animateTable(self.searchResultsTableView)
-                            }
-                        }
-                    } else {
-                        debugPrint("failure fetching")
-                    }
-                }
-            } else {
-                self.filteredPhotos.removeAll()
-                DispatchQueue.main.async {
-                    self.searchResultsTableView.reloadData()
-                }
-
-            }
-        }
+//        if let searchTerm = searchController.searchBar.text {
+//            if searchTerm.count >= 3 {
+//                NetworkManager.sharedInstance.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
+//                    guard let self = self else {return}
+//                    if success {
+//                        if let filteredPhotos = filteredPhotos {
+//                            self.filteredPhotos = filteredPhotos
+//                            DispatchQueue.main.async {
+//                                self.animateTable(self.searchResultsTableView)
+//                            }
+//                        }
+//                    } else {
+//                        debugPrint("failure fetching")
+//                    }
+//                }
+//            } else {
+//                self.filteredPhotos.removeAll()
+//                DispatchQueue.main.async {
+//                    self.searchResultsTableView.reloadData()
+//                }
+//
+//            }
+//        }
     }
 }
