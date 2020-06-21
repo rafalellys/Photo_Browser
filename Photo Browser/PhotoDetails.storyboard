@@ -83,7 +83,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPB-QC-SVY" userLabel="user info view">
-                                                        <rect key="frame" x="0.0" y="86.5" width="414" height="68"/>
+                                                        <rect key="frame" x="0.0" y="86.5" width="414" height="74"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZE5-gl-s24" userLabel="user info stack">
                                                                 <rect key="frame" x="80" y="10" width="68" height="48"/>
@@ -124,14 +124,14 @@
                                                         <constraints>
                                                             <constraint firstItem="ZE5-gl-s24" firstAttribute="leading" secondItem="TCa-7Q-ON5" secondAttribute="trailing" constant="10" id="3VY-5W-cAN"/>
                                                             <constraint firstItem="ZE5-gl-s24" firstAttribute="top" secondItem="oPB-QC-SVY" secondAttribute="top" constant="10" id="8OA-O1-ruO"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ZE5-gl-s24" secondAttribute="bottom" constant="10" id="B3h-wu-nnB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ZE5-gl-s24" secondAttribute="bottom" constant="16" id="B3h-wu-nnB"/>
                                                             <constraint firstItem="ZE5-gl-s24" firstAttribute="top" secondItem="TCa-7Q-ON5" secondAttribute="top" id="BB8-u4-sO8"/>
                                                             <constraint firstItem="TCa-7Q-ON5" firstAttribute="leading" secondItem="oPB-QC-SVY" secondAttribute="leading" constant="20" id="J6c-Pa-iij"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZE5-gl-s24" secondAttribute="trailing" constant="20" id="VrQ-44-MwO"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utM-Su-rke" userLabel="social media view">
-                                                        <rect key="frame" x="0.0" y="157.5" width="414" height="488.5"/>
+                                                        <rect key="frame" x="0.0" y="163.5" width="414" height="482.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find photographer at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zP-eB-8Xd">
                                                                 <rect key="frame" x="20" y="10" width="138" height="19.5"/>
