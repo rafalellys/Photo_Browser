@@ -40,6 +40,8 @@ class SearchViewController: BaseViewController {
         searchResultsTableView.dataSource = self
         searchResultsTableView.separatorStyle = .none
         
+        searchResultsTableView.estimatedRowHeight = 110
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)

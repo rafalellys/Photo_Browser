@@ -92,7 +92,6 @@ class PhotoDetailsViewController: BaseViewController {
                 DispatchQueue.main.async {
                     if success {
                         if let imageData = imgData {
-                            print(imageData)
                             DispatchQueue.main.async {
                                 if let img = UIImage(data: imageData as Data) {
                                     let ratio = img.size.width / img.size.height
@@ -120,7 +119,6 @@ class PhotoDetailsViewController: BaseViewController {
                 DispatchQueue.main.async {
                     if success {
                         if let imageData = imgData {
-                            print(imageData)
                             DispatchQueue.main.async {
                                 if let img = UIImage(data: imageData as Data) {
                                     self.userProfileImageView.image = img

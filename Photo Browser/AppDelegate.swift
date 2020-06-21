@@ -22,10 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              NSAttributedString.Key.font: UIFont(name: AppFonts.Raleway.rawValue, size: 30) ??
                 UIFont.systemFont(ofSize: 30)]
 
-        UIFont.familyNames.forEach({ familyName in
-                   let fontNames = UIFont.fontNames(forFamilyName: familyName)
-                   print(familyName, fontNames)
-               })
         
         return true
     }

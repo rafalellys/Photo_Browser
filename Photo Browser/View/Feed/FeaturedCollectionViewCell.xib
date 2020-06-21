@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1aR-hO-2Cd">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photographer" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-A7-pja">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-A7-pja">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
                             </imageView>
                         </subviews>
@@ -47,6 +47,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="photographer" width="540" height="303.5"/>
+        <image name="placeholder" width="40" height="40"/>
     </resources>
 </document>

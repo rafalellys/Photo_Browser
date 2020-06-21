@@ -138,11 +138,11 @@
 			children = (
 				051DA359249C8D5E007B9AFE /* AppDelegate.swift */,
 				051DA35B249C8D5E007B9AFE /* SceneDelegate.swift */,
-				051DA399249D22FC007B9AFE /* Convenience */,
 				051DA387249D0711007B9AFE /* Network */,
 				051DA375249C95B3007B9AFE /* Model */,
 				051DA38E249D0A14007B9AFE /* View */,
 				051DA386249C9638007B9AFE /* Controller */,
+				051DA399249D22FC007B9AFE /* Convenience */,
 				051DA35F249C8D5E007B9AFE /* Main.storyboard */,
 				051DA371249C8EB9007B9AFE /* Feed.storyboard */,
 				051DA373249C8EC5007B9AFE /* Search.storyboard */,
@@ -196,13 +196,13 @@
 			isa = PBXGroup;
 			children = (
 				051DA39C249D2326007B9AFE /* BaseViewController.swift */,
-				051DA39E249D2362007B9AFE /* CustomIndicatorView.swift */,
+				059C4A27249FE682007366CC /* Storyboard+Extension.swift */,
 				051DA39A249D2311007B9AFE /* UtilityMethods.swift */,
+				051DA39E249D2362007B9AFE /* CustomIndicatorView.swift */,
+				056A7B14249D9AC4004FF4CD /* AppFonts.swift */,
 				051DA3A0249D23A3007B9AFE /* CircleView.swift */,
 				05660532249EA171003640FF /* RoundedView.swift */,
 				051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */,
-				059C4A27249FE682007366CC /* Storyboard+Extension.swift */,
-				056A7B14249D9AC4004FF4CD /* AppFonts.swift */,
 			);
 			path = Convenience;
 			sourceTree = "<group>";
