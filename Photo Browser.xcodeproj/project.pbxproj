@@ -27,8 +27,6 @@
 		051DA38D249D0956007B9AFE /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA38C249D0956007B9AFE /* PhotoDetailsViewController.swift */; };
 		051DA391249D0A2D007B9AFE /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA38F249D0A2D007B9AFE /* FeedCollectionViewCell.swift */; };
 		051DA392249D0A2D007B9AFE /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051DA390249D0A2D007B9AFE /* FeedCollectionViewCell.xib */; };
-		051DA395249D0A9C007B9AFE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA393249D0A9C007B9AFE /* HeaderView.swift */; };
-		051DA396249D0A9C007B9AFE /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051DA394249D0A9C007B9AFE /* HeaderView.xib */; };
 		051DA398249D0E0E007B9AFE /* PhotoDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 051DA397249D0E0E007B9AFE /* PhotoDetails.storyboard */; };
 		051DA39B249D2311007B9AFE /* UtilityMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA39A249D2311007B9AFE /* UtilityMethods.swift */; };
 		051DA39D249D2326007B9AFE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DA39C249D2326007B9AFE /* BaseViewController.swift */; };
@@ -52,6 +50,7 @@
 		056A7B1F249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056A7B1D249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib */; };
 		056A7B23249DB6EA004FF4CD /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */; };
 		056A7B25249DB715004FF4CD /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B24249DB715004FF4CD /* ListHeaderView.swift */; };
+		059C4A28249FE682007366CC /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C4A27249FE682007366CC /* Storyboard+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,8 +76,6 @@
 		051DA38C249D0956007B9AFE /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
 		051DA38F249D0A2D007B9AFE /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		051DA390249D0A2D007B9AFE /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
-		051DA393249D0A9C007B9AFE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		051DA394249D0A9C007B9AFE /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		051DA397249D0E0E007B9AFE /* PhotoDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoDetails.storyboard; sourceTree = "<group>"; };
 		051DA39A249D2311007B9AFE /* UtilityMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityMethods.swift; sourceTree = "<group>"; };
 		051DA39C249D2326007B9AFE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +99,7 @@
 		056A7B1D249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedCollectionViewCell.xib; sourceTree = "<group>"; };
 		056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		056A7B24249DB715004FF4CD /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
+		059C4A27249FE682007366CC /* Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +195,7 @@
 				051DA3A0249D23A3007B9AFE /* CircleView.swift */,
 				05660532249EA171003640FF /* RoundedView.swift */,
 				051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */,
+				059C4A27249FE682007366CC /* Storyboard+Extension.swift */,
 				056A7B14249D9AC4004FF4CD /* AppFonts.swift */,
 			);
 			path = Convenience;
@@ -234,8 +233,6 @@
 		051DA3C6249D5F4A007B9AFE /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				051DA393249D0A9C007B9AFE /* HeaderView.swift */,
-				051DA394249D0A9C007B9AFE /* HeaderView.xib */,
 				056A7B24249DB715004FF4CD /* ListHeaderView.swift */,
 				056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */,
 				056A7B1C249D9E6A004FF4CD /* FeaturedCollectionViewCell.swift */,
@@ -322,7 +319,6 @@
 				051DA374249C8EC5007B9AFE /* Search.storyboard in Resources */,
 				056A7B23249DB6EA004FF4CD /* ListHeaderView.xib in Resources */,
 				051DA398249D0E0E007B9AFE /* PhotoDetails.storyboard in Resources */,
-				051DA396249D0A9C007B9AFE /* HeaderView.xib in Resources */,
 				051DA3A5249D2901007B9AFE /* SearchResultsTableViewCell.xib in Resources */,
 				056A7B1F249D9E6A004FF4CD /* FeaturedCollectionViewCell.xib in Resources */,
 			);
@@ -338,6 +334,7 @@
 				051DA38D249D0956007B9AFE /* PhotoDetailsViewController.swift in Sources */,
 				051DA389249D0742007B9AFE /* NetworkManager.swift in Sources */,
 				056A7B1B249D9DE1004FF4CD /* CenteredFlowLayout.swift in Sources */,
+				059C4A28249FE682007366CC /* Storyboard+Extension.swift in Sources */,
 				051DA3BC249D4C73007B9AFE /* Ancestry.swift in Sources */,
 				051DA3A1249D23A3007B9AFE /* CircleView.swift in Sources */,
 				051DA3B9249D4C73007B9AFE /* Source.swift in Sources */,
@@ -356,7 +353,6 @@
 				051DA381249C95F9007B9AFE /* Sponsorship.swift in Sources */,
 				051DA3C0249D4C73007B9AFE /* Tags.swift in Sources */,
 				051DA385249C95F9007B9AFE /* User.swift in Sources */,
-				051DA395249D0A9C007B9AFE /* HeaderView.swift in Sources */,
 				051DA3B7249D4C73007B9AFE /* Type.swift in Sources */,
 				051DA3BB249D4C73007B9AFE /* SearchResultsModel.swift in Sources */,
 				051DA3C9249D7A4A007B9AFE /* RoundedCornersView.swift in Sources */,

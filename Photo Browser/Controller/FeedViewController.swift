@@ -6,6 +6,7 @@
 //  Copyright © 2020 Rafael Lellys. All rights reserved.
 //
 
+
 import UIKit
 
 class FeedViewController: UIViewController {
@@ -14,7 +15,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var feedCollectionView: UICollectionView!
     
     @IBOutlet weak var feedFlowLayout: UICollectionViewFlowLayout!
-        
+    
     var photos = [Model]()
     
     override func viewDidLoad() {
@@ -84,33 +85,33 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCollectionViewCell", for: indexPath) as! FeedCollectionViewCell
         
         cell.feedCellImageView.image = UIImage(named:"placeholder")
-
+        
         let photoRow = self.photos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {
+            
+            NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
                 
-                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
-                    
-                    guard let _ = self else {return}
-                    
-                    DispatchQueue.main.async {
-                        if success {
-                            if let imageData = imgData {
-                                DispatchQueue.main.async {
-                                    if let img = UIImage(data: imageData as Data) {
-                                        cell.feedCellImageView.image = img
-                                        cell.contentMode = .scaleAspectFill
-                                    } else {
-                                        cell.feedCellImageView.image = UIImage(named:"placeholder")
-                                    }
+                guard let _ = self else {return}
+                
+                DispatchQueue.main.async {
+                    if success {
+                        if let imageData = imgData {
+                            DispatchQueue.main.async {
+                                if let img = UIImage(data: imageData as Data) {
+                                    cell.feedCellImageView.image = img
+                                    cell.contentMode = .scaleAspectFill
+                                } else {
+                                    cell.feedCellImageView.image = UIImage(named:"placeholder")
                                 }
                             }
-                        } else {
-                            debugPrint("image fetch failed")
-                            cell.feedCellImageView.image = UIImage(named:"placeholder")
                         }
+                    } else {
+                        debugPrint("image fetch failed")
+                        cell.feedCellImageView.image = UIImage(named:"placeholder")
                     }
                 }
+            }
         }
         return cell
     }
@@ -118,13 +119,16 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        let storyboard = UIStoryboard(name: "PhotoDetails", bundle: Bundle.main)
-        let photoDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PhotoDetailsViewController.self)) as! PhotoDetailsViewController
         let photoRow = self.photos[indexPath.item]
-        photoDetailsVC.photoModel = photoRow
-        self.navigationController?.pushViewController(photoDetailsVC, animated: true)
+        segueToPhotoDetails(photo: photoRow)
+    }
+    
+    func segueToPhotoDetails(photo:Model) {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let photoDetailsVC = UIStoryboard.photoDetailsViewController()
+        photoDetailsVC.photoModel = photo
+        navigationController?.pushViewController(photoDetailsVC, animated: true)
         
     }
     
@@ -134,12 +138,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension FeedViewController: ListHeaderDelegate {
     
     func itemSelected(photo: Model) {
-         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-               let storyboard = UIStoryboard(name: "PhotoDetails", bundle: Bundle.main)
-               let photoDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PhotoDetailsViewController.self)) as! PhotoDetailsViewController
-               let photoRow = photo
-               photoDetailsVC.photoModel = photoRow
-               self.navigationController?.pushViewController(photoDetailsVC, animated: true)
+        
+        segueToPhotoDetails(photo: photo)
+        
     }
 }
-    
