@@ -25,13 +25,10 @@ final class NetworkManager {
     private let searchQueryPath = "?query="
     private let orderByPath = "&order_by="
     
-    let imageDataCache = NSCache<NSString, NSData>()
-
+    private let imageDataCache = NSCache<NSString, NSData>()
     
     //MARK: - Completion Handlers
     typealias APIPhotoModelsCompletionHandler = (_ success: Bool, _ responseObject: [Model]?) -> Void
-    
-    typealias Parameters = [String: String]
     
     //MARK: - Photos Data
     func fetchPhotosData(orderBy: String, completion: @escaping APIPhotoModelsCompletionHandler) {

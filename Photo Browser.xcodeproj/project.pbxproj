@@ -56,7 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		051DA356249C8D5E007B9AFE /* Photo Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		051DA356249C8D5E007B9AFE /* Rear Window.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rear Window.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		051DA359249C8D5E007B9AFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		051DA35B249C8D5E007B9AFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		051DA360249C8D5E007B9AFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +117,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050AB3F4249FFCEE007A890A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				051DA39E249D2362007B9AFE /* CustomIndicatorView.swift */,
+				051DA3A0249D23A3007B9AFE /* CircleView.swift */,
+				05660532249EA171003640FF /* RoundedView.swift */,
+				051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		051DA34D249C8D5E007B9AFE = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +139,7 @@
 		051DA357249C8D5E007B9AFE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				051DA356249C8D5E007B9AFE /* Photo Browser.app */,
+				051DA356249C8D5E007B9AFE /* Rear Window.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +179,7 @@
 		051DA386249C9638007B9AFE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				051DA39C249D2326007B9AFE /* BaseViewController.swift */,
 				051DA36D249C8E83007B9AFE /* FeedViewController.swift */,
 				051DA38C249D0956007B9AFE /* PhotoDetailsViewController.swift */,
 				051DA36F249C8E92007B9AFE /* SearchViewController.swift */,
@@ -195,14 +207,10 @@
 		051DA399249D22FC007B9AFE /* Convenience */ = {
 			isa = PBXGroup;
 			children = (
-				051DA39C249D2326007B9AFE /* BaseViewController.swift */,
 				059C4A27249FE682007366CC /* Storyboard+Extension.swift */,
 				051DA39A249D2311007B9AFE /* UtilityMethods.swift */,
-				051DA39E249D2362007B9AFE /* CustomIndicatorView.swift */,
 				056A7B14249D9AC4004FF4CD /* AppFonts.swift */,
-				051DA3A0249D23A3007B9AFE /* CircleView.swift */,
-				05660532249EA171003640FF /* RoundedView.swift */,
-				051DA3C8249D7A4A007B9AFE /* RoundedCornersView.swift */,
+				050AB3F4249FFCEE007A890A /* View */,
 			);
 			path = Convenience;
 			sourceTree = "<group>";
@@ -276,7 +284,7 @@
 			);
 			name = "Photo Browser";
 			productName = "Photo Browser";
-			productReference = 051DA356249C8D5E007B9AFE /* Photo Browser.app */;
+			productReference = 051DA356249C8D5E007B9AFE /* Rear Window.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -524,7 +532,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rafalellys.Photo-Browser";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Rear Window";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -542,7 +550,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rafalellys.Photo-Browser";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Rear Window";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -101,6 +101,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                     } else {
                         debugPrint("image fetch failed")
+                        cell.searchCellImageView.image = UIImage(named:"placeholder")
                     }
                 }
             }

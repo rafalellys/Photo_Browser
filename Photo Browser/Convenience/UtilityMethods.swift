@@ -10,8 +10,6 @@ import UIKit
 
 class UtilityMethods {
     
-    //MARK:- Set shadow on view
-    
     class func setShadowOnView(_ view : UIView) {
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.lightGray.cgColor

@@ -127,6 +127,7 @@ class PhotoDetailsViewController: BaseViewController {
                         }
                     } else {
                         debugPrint("image fetch failed")
+                        self.userProfileImageView.image = UIImage(named: "placeholder")
                     }
                 }
             }
