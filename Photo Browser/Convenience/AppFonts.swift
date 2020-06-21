@@ -10,6 +10,7 @@ import UIKit
 
 enum AppFonts: String {
     case Regular = "Avenir Next"
+    case Raleway = "Raleway-Thin_Regular"
     case Medium = "AvenirNext-Medium"
     case SemiBold = "AvenirNext-DemiBold"
     
@@ -20,9 +21,9 @@ enum AppFonts: String {
 
 enum Size: CGFloat {
     case h1 = 30.0
-    case h2 = 25.0
-    case h3 = 20.0
-    case h4 = 17.0
-    case h5 = 16.0
-    case h6 = 14.0
+    case h2 = 17.0
+    case h3 = 16.0
+    case h4 = 15.0
+    case h5 = 14.5
+    case h6 = 13.0
 }

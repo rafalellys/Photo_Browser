@@ -35,13 +35,30 @@ class PhotoDetailsViewController: BaseViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         datePublishedLabel.textColor = .lightGray
+        datePublishedLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
         descriptionLabel.textColor = .darkGray
+        descriptionLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
+
         likesImageView.tintColor = .darkGray
+
         usernameLabel.textColor = .darkGray
-        instagramProfileLabel.textColor = .lightGray
-        findMeLabel.textColor = .darkGray
+        usernameLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
+        
         bioLabel.textColor = .lightGray
+        bioLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
+
+        instagramProfileLabel.textColor = .lightGray
+        instagramProfileLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
+        findMeLabel.textColor = .darkGray
+        findMeLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
+
         likesCountLabel.textColor = .darkGray
+        likesCountLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
         
         likesImageView.image = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
 

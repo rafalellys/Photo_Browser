@@ -127,6 +127,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="ZE5-gl-s24" secondAttribute="bottom" constant="16" id="B3h-wu-nnB"/>
                                                             <constraint firstItem="ZE5-gl-s24" firstAttribute="top" secondItem="TCa-7Q-ON5" secondAttribute="top" id="BB8-u4-sO8"/>
                                                             <constraint firstItem="TCa-7Q-ON5" firstAttribute="leading" secondItem="oPB-QC-SVY" secondAttribute="leading" constant="20" id="J6c-Pa-iij"/>
+                                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TCa-7Q-ON5" secondAttribute="bottom" id="QqD-rZ-LiA"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZE5-gl-s24" secondAttribute="trailing" constant="20" id="VrQ-44-MwO"/>
                                                         </constraints>
                                                     </view>

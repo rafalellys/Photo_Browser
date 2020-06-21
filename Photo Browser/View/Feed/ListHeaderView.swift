@@ -28,7 +28,10 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
         super.awakeFromNib()
         
         popularLabel.textColor = .darkGray
+        popularLabel.font = AppFonts.Raleway.of(size: Size.h3.rawValue)
         latestLabel.textColor = .darkGray
+        latestLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
+
         
         listHeaderCollectionView.register(UINib.init(nibName: String(describing: FeaturedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeaturedCollectionViewCell.self))
         

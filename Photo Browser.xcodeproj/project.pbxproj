@@ -51,6 +51,8 @@
 		056A7B23249DB6EA004FF4CD /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */; };
 		056A7B25249DB715004FF4CD /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A7B24249DB715004FF4CD /* ListHeaderView.swift */; };
 		059C4A28249FE682007366CC /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C4A27249FE682007366CC /* Storyboard+Extension.swift */; };
+		059C4A2D249FEF21007366CC /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059C4A2B249FEF21007366CC /* Raleway-VariableFont_wght.ttf */; };
+		059C4A2E249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059C4A2C249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,8 @@
 		056A7B22249DB6EA004FF4CD /* ListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		056A7B24249DB715004FF4CD /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		059C4A27249FE682007366CC /* Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
+		059C4A2B249FEF21007366CC /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		059C4A2C249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				051DA373249C8EC5007B9AFE /* Search.storyboard */,
 				051DA397249D0E0E007B9AFE /* PhotoDetails.storyboard */,
 				051DA362249C8D60007B9AFE /* Assets.xcassets */,
+				059C4A2C249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf */,
+				059C4A2B249FEF21007366CC /* Raleway-VariableFont_wght.ttf */,
 				051DA364249C8D60007B9AFE /* LaunchScreen.storyboard */,
 				051DA367249C8D60007B9AFE /* Info.plist */,
 			);
@@ -311,12 +317,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059C4A2D249FEF21007366CC /* Raleway-VariableFont_wght.ttf in Resources */,
 				051DA366249C8D60007B9AFE /* LaunchScreen.storyboard in Resources */,
 				051DA363249C8D60007B9AFE /* Assets.xcassets in Resources */,
 				051DA372249C8EB9007B9AFE /* Feed.storyboard in Resources */,
 				051DA361249C8D5E007B9AFE /* Main.storyboard in Resources */,
 				051DA392249D0A2D007B9AFE /* FeedCollectionViewCell.xib in Resources */,
 				051DA374249C8EC5007B9AFE /* Search.storyboard in Resources */,
+				059C4A2E249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf in Resources */,
 				056A7B23249DB6EA004FF4CD /* ListHeaderView.xib in Resources */,
 				051DA398249D0E0E007B9AFE /* PhotoDetails.storyboard in Resources */,
 				051DA3A5249D2901007B9AFE /* SearchResultsTableViewCell.xib in Resources */,

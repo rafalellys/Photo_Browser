@@ -76,7 +76,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.usernameLabel.text = photoRow.user?.username
-        cell.descriptionLabel.text = photoRow.description
+        if photoRow.description != nil {
+            cell.descriptionLabel.text = photoRow.description
+        } else {
+            cell.descriptionLabel.text = photoRow.alt_description
+        }
         
         if let thumb = photoRow.urls?.thumb {
             NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) { [weak self] (success, imgData) in

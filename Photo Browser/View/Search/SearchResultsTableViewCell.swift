@@ -20,8 +20,14 @@ class SearchResultsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         dateLabel.textColor = .lightGray
+        dateLabel.font = AppFonts.Raleway.of(size: Size.h6.rawValue)
+
         usernameLabel.textColor = .darkGray
+        usernameLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
         descriptionLabel.textColor = .darkGray
+        descriptionLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
