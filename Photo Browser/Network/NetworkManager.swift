@@ -135,7 +135,7 @@ final class NetworkManager {
     func downloadImageData(imageURLString: String, completion: @escaping (_ success: Bool ,_ imgData: NSData?) -> Void) {
     
         if let cachedImageData = imageDataCache.object(forKey: "Image Data: \(imageURLString)" as NSString) {
-//                      debugPrint("image fetched from cache: \(imageURLString)")
+                      debugPrint("image fetched from cache: \(imageURLString)")
                        completion(true, cachedImageData as NSData)
         } else {
         
@@ -163,7 +163,7 @@ final class NetworkManager {
 
                 self.imageDataCache.setObject(data as NSData, forKey: "Image Data: \(imageURLString)" as NSString)
             
-//            debugPrint("image fetched from network: \(imageURLString)")
+            debugPrint("image fetched from network: \(imageURLString)")
 
             completion(true, data as NSData)
 
@@ -186,7 +186,7 @@ extension NetworkManager {
                 debugPrint("Http Response Status Code: \(httpResponse.statusCode)")
                 return true
             case 200...299:
-//                debugPrint("Http Response Status Code: \(httpResponse.statusCode)")
+                debugPrint("Http Response Status Code: \(httpResponse.statusCode)")
                 return true
             case 300...399:
                 debugPrint("Http Response Status Code: \(httpResponse.statusCode)")

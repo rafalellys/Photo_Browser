@@ -26,7 +26,7 @@ class FeedViewController: UIViewController {
         feedCollectionView.delegate = self
         feedCollectionView.dataSource = self
         
-        feedCollectionView.register(UINib.init(nibName: String(describing: FeedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedCollectionViewCell.self))
+        feedCollectionView.register(UINib.init(nibName: String(describing: LatestCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: LatestCollectionViewCell.self))
         
         feedCollectionView.register(UINib(nibName: String(describing: ListHeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ListHeaderView")
         
@@ -82,7 +82,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCollectionViewCell", for: indexPath) as! FeedCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCollectionViewCell", for: indexPath) as! LatestCollectionViewCell
         
         cell.feedCellImageView.image = UIImage(named:"placeholder")
         
@@ -94,7 +94,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 guard let _ = self else {return}
                 
-                DispatchQueue.main.async {
                     if success {
                         if let imageData = imgData {
                             DispatchQueue.main.async {
@@ -110,7 +109,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         debugPrint("image fetch failed")
                         cell.feedCellImageView.image = UIImage(named:"placeholder")
                     }
-                }
             }
         }
         return cell

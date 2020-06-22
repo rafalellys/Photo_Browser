@@ -1,5 +1,5 @@
 //
-//  FeedCollectionViewCell.swift
+//  LatestCollectionViewCell.swift
 //  Photo Browser
 //
 //  Created by Rafael Lellys on 2020-06-19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedCollectionViewCell: UICollectionViewCell {
+class LatestCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var feedCellImageView: UIImageView!
     

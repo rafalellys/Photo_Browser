@@ -89,7 +89,6 @@ class PhotoDetailsViewController: BaseViewController {
                 
                 guard let self = self else {return}
                 
-                DispatchQueue.main.async {
                     if success {
                         if let imageData = imgData {
                             DispatchQueue.main.async {
@@ -107,7 +106,6 @@ class PhotoDetailsViewController: BaseViewController {
                         self.hideLoadingIndicator()
                         
                     }
-                }
             }
         }
         
@@ -116,7 +114,6 @@ class PhotoDetailsViewController: BaseViewController {
                 
                 guard let self = self else {return}
                 
-                DispatchQueue.main.async {
                     if success {
                         if let imageData = imgData {
                             DispatchQueue.main.async {
@@ -129,7 +126,6 @@ class PhotoDetailsViewController: BaseViewController {
                         debugPrint("image fetch failed")
                         self.userProfileImageView.image = UIImage(named: "placeholder")
                     }
-                }
             }
         
         }

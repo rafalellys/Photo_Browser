@@ -47,11 +47,12 @@ var overlay: UIView?
         }
         
         func hideLoadingIndicator() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            DispatchQueue.main.async {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 self.overlay?.removeFromSuperview()
                 self.indicatorView?.removeFromSuperview()
                 self.indicatorView = nil
-            })
+            }
         }
     
     func animateTable(_ tableView: UITableView) {

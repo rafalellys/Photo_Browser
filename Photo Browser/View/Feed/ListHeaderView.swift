@@ -33,7 +33,7 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
         latestLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
 
         
-        listHeaderCollectionView.register(UINib.init(nibName: String(describing: FeaturedCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeaturedCollectionViewCell.self))
+        listHeaderCollectionView.register(UINib.init(nibName: String(describing: PopularCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: PopularCollectionViewCell.self))
         
         listHeaderCollectionView.delegate = self
         listHeaderCollectionView.dataSource = self
@@ -64,7 +64,7 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FeaturedCollectionViewCell.self), for: indexPath) as! FeaturedCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PopularCollectionViewCell.self), for: indexPath) as! PopularCollectionViewCell
         
         cell.popularPhotoImageView.image = UIImage(named:"placeholder")
 
@@ -75,7 +75,6 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
                     
                     guard let _ = self else {return}
                     
-                    DispatchQueue.main.async {
                         if success {
                             if let imageData = imgData {
                                 DispatchQueue.main.async {
@@ -91,7 +90,6 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
                             debugPrint("image fetch failed")
                             cell.popularPhotoImageView.image = UIImage(named:"placeholder")
                         }
-                    }
                 }
         }
         return cell

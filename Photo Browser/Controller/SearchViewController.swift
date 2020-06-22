@@ -89,7 +89,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 guard let _ = self else {return}
                 
-                DispatchQueue.main.async {
                     if success {
                         if let imageData = imgData {
                             DispatchQueue.main.async {
@@ -103,7 +102,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                         debugPrint("image fetch failed")
                         cell.searchCellImageView.image = UIImage(named:"placeholder")
                     }
-                }
             }
         }
         
@@ -151,7 +149,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate{
                             }
                         }
                     } else {
-                        debugPrint("failure fetching")
+                        debugPrint("failure fetching photos data")
                     }
                 }
             } else {
