@@ -48,7 +48,6 @@ var overlay: UIView?
         
         func hideLoadingIndicator() {
             DispatchQueue.main.async {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 self.overlay?.removeFromSuperview()
                 self.indicatorView?.removeFromSuperview()
                 self.indicatorView = nil

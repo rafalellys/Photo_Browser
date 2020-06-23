@@ -36,36 +36,36 @@ class PhotoDetailsViewController: BaseViewController {
         
         datePublishedLabel.textColor = .lightGray
         datePublishedLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
+        
         descriptionLabel.textColor = .darkGray
         descriptionLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
-
+        
         likesImageView.tintColor = .darkGray
-
+        
         usernameLabel.textColor = .darkGray
         usernameLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
         
         bioLabel.textColor = .lightGray
         bioLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
-
+        
+        
         instagramProfileLabel.textColor = .lightGray
         instagramProfileLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
+        
         findMeLabel.textColor = .darkGray
         findMeLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
-
+        
+        
         likesCountLabel.textColor = .darkGray
         likesCountLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
+        
         
         likesImageView.image = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
-
+        
         usernameLabel.text = photoModel?.user?.username
         descriptionLabel.text = photoModel?.description ?? photoModel?.alt_description
         
-    
+        
         bioLabel.text = photoModel?.user?.bio
         
         if let instagramProfile = photoModel?.user?.instagram_username {
@@ -73,7 +73,7 @@ class PhotoDetailsViewController: BaseViewController {
         } else {
             socialMediaContainer.isHidden = true
         }
-                
+        
         
         if let likes = photoModel?.likes {
             likesCountLabel.text = "\(String(describing: likes))"
@@ -84,28 +84,31 @@ class PhotoDetailsViewController: BaseViewController {
         }
         
         if let photoURLString = photoModel?.urls?.full {
-        
+            
             NetworkManager.sharedInstance.downloadImageData(imageURLString: photoURLString) { [weak self] (success, imgData) in
                 
                 guard let self = self else {return}
                 
-                    if success {
-                        if let imageData = imgData {
-                            DispatchQueue.main.async {
-                                if let img = UIImage(data: imageData as Data) {
-                                    let ratio = img.size.width / img.size.height
-                                    let newHeight = self.photoImageView.frame.width / ratio
-                                    self.photoContainerHeight.constant = newHeight
-                                    self.photoImageView.image = img
-                                }
-                                self.hideLoadingIndicator()
+                if success {
+                    if let imageData = imgData {
+                        DispatchQueue.main.async {
+                            if let img = UIImage(data: imageData as Data) {
+                                
+                                let ratio = img.size.width / img.size.height
+                                let newHeight = self.photoImageView.frame.width / ratio
+                                
+                                self.photoContainerHeight.constant = newHeight
+                                self.photoImageView.image = img.renderWith(newSize: CGSize(width: self.photoImageView.frame.width, height: newHeight))
+                                
                             }
+                            self.hideLoadingIndicator()
                         }
-                    } else {
-                        debugPrint("image fetch failed")
-                        self.hideLoadingIndicator()
-                        
                     }
+                } else {
+                    debugPrint("image fetch failed")
+                    self.photoImageView.image = UIImage(named:"placeholder")
+                    self.hideLoadingIndicator()
+                }
             }
         }
         
@@ -114,21 +117,20 @@ class PhotoDetailsViewController: BaseViewController {
                 
                 guard let self = self else {return}
                 
-                    if success {
-                        if let imageData = imgData {
-                            DispatchQueue.main.async {
-                                if let img = UIImage(data: imageData as Data) {
-                                    self.userProfileImageView.image = img
-                                }
+                if success {
+                    if let imageData = imgData {
+                        DispatchQueue.main.async {
+                            if let img = UIImage(data: imageData as Data) {
+                                self.userProfileImageView.image = img
                             }
                         }
-                    } else {
-                        debugPrint("image fetch failed")
-                        self.userProfileImageView.image = UIImage(named: "placeholder")
                     }
+                } else {
+                    debugPrint("image fetch failed")
+                    self.userProfileImageView.image = UIImage(named: "placeholder")
+                }
             }
-        
+            
         }
     }
-    
 }
