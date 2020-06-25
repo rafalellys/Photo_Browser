@@ -10,28 +10,12 @@ import UIKit
 
 class UtilityMethods {
     
-    class func setShadowOnView(_ view : UIView) {
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.lightGray.cgColor
-        view.layer.shadowOpacity = 0.7
-        view.layer.shadowRadius = 2
-        view.layer.shadowOffset = CGSize(width: 0.7, height: 1.0)
-    }
-    
-    class func setShadowOnLabel(_ view : UILabel) {
-           view.layer.masksToBounds = false
-           view.layer.shadowColor = UIColor.lightGray.cgColor
-           view.layer.shadowOpacity = 0.7
-           view.layer.shadowRadius = 2
-        view.layer.shadowOffset = CGSize(width: 0.7, height: 0.5)
-       }
-    
-    class func setShadowOnImageView(_ view : UIImageView) {
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.lightGray.cgColor
-        view.layer.shadowOpacity = 0.7
-        view.layer.shadowRadius = 2
-        view.layer.shadowOffset = CGSize(width: 0.7, height: 1.0)
+    class func setShadowOn<Element: UIView>(_ element: Element) {
+        element.layer.masksToBounds = false
+        element.layer.shadowColor = UIColor.lightGray.cgColor
+        element.layer.shadowOpacity = 0.7
+        element.layer.shadowRadius = 2
+        element.layer.shadowOffset = CGSize(width: 0.7, height: 1.0)
     }
     
     class func makeDateWithReadableMonth(dateTobeConverted: String?) -> String {

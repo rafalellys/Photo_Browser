@@ -27,11 +27,7 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        popularLabel.textColor = .darkGray
-        popularLabel.font = AppFonts.Raleway.of(size: Size.h3.rawValue)
-        latestLabel.textColor = .darkGray
-        latestLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
-
+        setupLabelsUI()
         
         listHeaderCollectionView.register(UINib.init(nibName: String(describing: PopularCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: PopularCollectionViewCell.self))
         
@@ -98,4 +94,14 @@ class ListHeaderView: UICollectionReusableView, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.delegate?.itemSelected(photo:self.popularPhotos[indexPath.row])
        }
+}
+
+extension ListHeaderView {
+    
+    func setupLabelsUI(){
+        popularLabel.textColor = .darkGray
+        popularLabel.font = AppFonts.Raleway.of(size: Size.h3.rawValue)
+        latestLabel.textColor = .darkGray
+        latestLabel.font = AppFonts.Raleway.of(size: Size.h4.rawValue)
+    }
 }

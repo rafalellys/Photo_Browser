@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchResultsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var searchCellImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -19,20 +19,25 @@ class SearchResultsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        dateLabel.textColor = .lightGray
-        dateLabel.font = AppFonts.Raleway.of(size: Size.h6.rawValue)
-
-        usernameLabel.textColor = .darkGray
-        usernameLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
-        descriptionLabel.textColor = .darkGray
-        descriptionLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
-
+        setupLabelsUI()
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
+    }
+    
+    func setupLabelsUI(){
+        
+        dateLabel.textColor = .lightGray
+        dateLabel.font = AppFonts.Raleway.of(size: Size.h6.rawValue)
+        
+        usernameLabel.textColor = .darkGray
+        usernameLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+        
+        descriptionLabel.textColor = .darkGray
+        descriptionLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
     }
     
 }
