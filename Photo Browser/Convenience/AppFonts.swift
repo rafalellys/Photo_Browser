@@ -10,9 +10,8 @@ import UIKit
 
 enum AppFonts: String {
     case Regular = "Avenir Next"
-    case Raleway = "Raleway-Thin_Regular"
-    case Medium = "AvenirNext-Medium"
-    case SemiBold = "AvenirNext-DemiBold"
+    case RalewayRegular = "Raleway-Thin_Regular"
+    case RalewayBold = "Raleway-Thin_Bold"
     
     func of(size: CGFloat) -> UIFont? {
         return UIFont(name: self.rawValue, size: size)

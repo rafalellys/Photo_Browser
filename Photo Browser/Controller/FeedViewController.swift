@@ -14,9 +14,9 @@ class FeedViewController: UIViewController {
     
     @IBOutlet weak var feedCollectionView: UICollectionView!
     
-    @IBOutlet weak var feedFlowLayout: UICollectionViewFlowLayout!
-    
     var photos = [Model]()
+    
+    let flowLayout = FeedCollectionViewFlowLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,12 @@ class FeedViewController: UIViewController {
         
         feedCollectionView.register(UINib.init(nibName: String(describing: LatestCollectionViewCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: LatestCollectionViewCell.self))
         
-        feedCollectionView.register(UINib(nibName: String(describing: ListHeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ListHeaderView")
+        feedCollectionView.collectionViewLayout = flowLayout
+        flowLayout.scrollDirection = .vertical
+        
+        feedCollectionView.register(UINib.init(nibName: String(describing: FeedPopularSectionCell.self), bundle: Bundle.main), forCellWithReuseIdentifier: String(describing: FeedPopularSectionCell.self))
+        
+        feedCollectionView.register(UINib(nibName: String(describing: FeedSectionHeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedSectionHeaderView")
         
         NetworkManager.sharedInstance.fetchPhotosData(orderBy: "latest") { [weak self] (success, photos) in
             
@@ -52,48 +57,114 @@ class FeedViewController: UIViewController {
 extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 248)
+        
+        return CGSize(width: feedCollectionView.frame.size.width, height: 45)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        var insets = UIEdgeInsets()
+        
+        switch section {
+        case 0:
+            insets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        case 1:
+            insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            
+        default: break
+            
+        }
+        
+        return insets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellSide = feedCollectionView.frame.size.width/5
+        var cellSize = CGSize()
+
+        switch indexPath.section {
+        case 0:
+            cellSize = CGSize(width: feedCollectionView.frame.size.width, height: 178)
+
+        case 1:
+            let cellSide = feedCollectionView.frame.size.width/5
+            
+            cellSize = CGSize(width: cellSide, height: cellSide)
+
+        default: break
+            
+        }
         
-        return CGSize(width: cellSide, height: cellSide)
+        return cellSize
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        
+        var numberOfItems = Int()
+        
+        switch section {
+        case 0:
+            //popular photos collectionView inside
+            numberOfItems = 1
+        case 1:
+            //latest photos
+            numberOfItems = photos.count
+            
+        default: break
+            
+        }
+        
+        return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader,withReuseIdentifier: "\(ListHeaderView.self)",for: indexPath) as? ListHeaderView else {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader,withReuseIdentifier: "\(FeedSectionHeaderView.self)",for: indexPath) as? FeedSectionHeaderView else {
             fatalError("Invalid view type")
         }
         
-        headerView.delegate = self
+        
+        switch indexPath.section {
+        case 0:
+            headerView.setupLabelsUI(labelTitle: "Popular today", labelColor: .darkGray, labelFont: AppFonts.RalewayBold.of(size: Size.h3.rawValue) ?? UIFont.systemFont(ofSize: 16))
+            
+        case 1:
+            headerView.setupLabelsUI(labelTitle: "Latest photos", labelColor: .darkGray, labelFont: AppFonts.RalewayRegular.of(size: Size.h4.rawValue) ?? UIFont.systemFont(ofSize: 15))
+            
+        default: break
+            
+        }
         
         return headerView
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCollectionViewCell", for: indexPath) as! LatestCollectionViewCell
         
-        cell.feedCellImageView.image = UIImage(named:"placeholder")
-        
-        let photoRow = self.photos[indexPath.row]
-        
-        if let thumb = photoRow.urls?.thumb {
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedPopularSectionCell", for: indexPath) as! FeedPopularSectionCell
             
-            NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
+            //data source logic and layout inside FeedPopularSectionCell
+            cell.delegate = self
+            
+            return cell
+            
+        }
+        else {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCollectionViewCell", for: indexPath) as! LatestCollectionViewCell
+            
+            cell.feedCellImageView.image = UIImage(named:"placeholder")
+            
+            let photoRow = self.photos[indexPath.row]
+            
+            if let thumb = photoRow.urls?.thumb {
                 
-                guard let _ = self else {return}
-                
+                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
+                    
+                    guard let _ = self else {return}
+                    
                     if success {
                         if let imageData = imgData {
                             DispatchQueue.main.async {
@@ -109,9 +180,10 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         debugPrint("image fetch failed")
                         cell.feedCellImageView.image = UIImage(named:"placeholder")
                     }
+                }
             }
+            return cell
         }
-        return cell
     }
     
     
@@ -132,11 +204,9 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 
-extension FeedViewController: ListHeaderDelegate {
+extension FeedViewController: FeedPopularSectionCellDelegate {
     
     func itemSelected(photo: Model) {
-        
         segueToPhotoDetails(photo: photo)
-        
     }
 }

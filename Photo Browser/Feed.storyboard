@@ -10,7 +10,7 @@
         <!--Rear Window-->
         <scene sceneID="V0v-BV-Vq3">
             <objects>
-                <viewController storyboardIdentifier="FeedViewController" id="MVD-RT-LVb" customClass="FeedViewController" customModule="Photo_Browser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="MVD-RT-LVb" customClass="FeedViewController" customModule="Rear_Window" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cJB-id-duu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,6 @@
                     <navigationItem key="navigationItem" title="Rear Window" id="Aho-bV-aBp"/>
                     <connections>
                         <outlet property="feedCollectionView" destination="Srt-wK-ELX" id="9fK-VM-LJB"/>
-                        <outlet property="feedFlowLayout" destination="Ub6-LT-hoD" id="AgS-83-QLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlo-CY-I8w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

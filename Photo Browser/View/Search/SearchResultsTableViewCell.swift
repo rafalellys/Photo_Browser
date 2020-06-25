@@ -31,13 +31,13 @@ class SearchResultsTableViewCell: UITableViewCell {
     func setupLabelsUI(){
         
         dateLabel.textColor = .lightGray
-        dateLabel.font = AppFonts.Raleway.of(size: Size.h6.rawValue)
+        dateLabel.font = AppFonts.RalewayRegular.of(size: Size.h6.rawValue)
         
         usernameLabel.textColor = .darkGray
-        usernameLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+        usernameLabel.font = AppFonts.RalewayRegular.of(size: Size.h5.rawValue)
         
         descriptionLabel.textColor = .darkGray
-        descriptionLabel.font = AppFonts.Raleway.of(size: Size.h5.rawValue)
+        descriptionLabel.font = AppFonts.RalewayRegular.of(size: Size.h5.rawValue)
     }
     
 }

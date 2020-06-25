@@ -15,14 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UINavigationBar.appearance().titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont(name: AppFonts.Raleway.rawValue, size: 16) ?? UIFont.systemFont(ofSize: 16)]
+         UINavigationBar.appearance().titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: AppFonts.RalewayRegular.of(size: Size.h3.rawValue) ?? UIFont.systemFont(ofSize: 16)]
         
         UINavigationBar.appearance().largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
-             NSAttributedString.Key.font: UIFont(name: AppFonts.Raleway.rawValue, size: 30) ??
-                UIFont.systemFont(ofSize: 30)]
+             NSAttributedString.Key.font: AppFonts.RalewayRegular.of(size: Size.h1.rawValue) ?? UIFont.systemFont(ofSize: 30)]
 
-        
         return true
     }
     
