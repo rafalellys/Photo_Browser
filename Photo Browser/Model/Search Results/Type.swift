@@ -10,18 +10,18 @@ import Foundation
 
 struct Type : Codable {
 	let slug : String?
-	let pretty_slug : String?
+	let prettySlug : String?
 
 	enum CodingKeys: String, CodingKey {
 
 		case slug = "slug"
-		case pretty_slug = "pretty_slug"
+		case prettySlug = "pretty_slug"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		slug = try values.decodeIfPresent(String.self, forKey: .slug)
-		pretty_slug = try values.decodeIfPresent(String.self, forKey: .pretty_slug)
+		prettySlug = try values.decodeIfPresent(String.self, forKey: .prettySlug)
 	}
 
 }

@@ -9,24 +9,24 @@
 import Foundation
 
 struct Sponsorship : Codable {
-	let impression_urls : [String]?
+	let impressionUrls : [String]?
 	let tagline : String?
-	let tagline_url : String?
+	let taglineUrl : String?
 	let sponsor : Sponsor?
 
 	enum CodingKeys: String, CodingKey {
 
-		case impression_urls = "impression_urls"
+		case impressionUrls = "impression_urls"
 		case tagline = "tagline"
-		case tagline_url = "tagline_url"
+		case taglineUrl = "tagline_url"
 		case sponsor = "sponsor"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		impression_urls = try values.decodeIfPresent([String].self, forKey: .impression_urls)
+		impressionUrls = try values.decodeIfPresent([String].self, forKey: .impressionUrls)
 		tagline = try values.decodeIfPresent(String.self, forKey: .tagline)
-		tagline_url = try values.decodeIfPresent(String.self, forKey: .tagline_url)
+		taglineUrl = try values.decodeIfPresent(String.self, forKey: .taglineUrl)
 		sponsor = try values.decodeIfPresent(Sponsor.self, forKey: .sponsor)
 	}
 

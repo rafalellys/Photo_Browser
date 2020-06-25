@@ -13,8 +13,8 @@ struct Source : Codable {
 	let title : String?
 	let subtitle : String?
 	let description : String?
-	let meta_title : String?
-	let meta_description : String?
+	let metaTitle : String?
+	let metaDescription : String?
 	let coverPhoto : CoverPhoto?
 
 	enum CodingKeys: String, CodingKey {
@@ -23,8 +23,8 @@ struct Source : Codable {
 		case title = "title"
 		case subtitle = "subtitle"
 		case description = "description"
-		case meta_title = "meta_title"
-		case meta_description = "meta_description"
+		case metaTitle = "meta_title"
+		case metaDescription = "meta_description"
 		case coverPhoto = "cover_photo"
 	}
 
@@ -34,8 +34,8 @@ struct Source : Codable {
 		title = try values.decodeIfPresent(String.self, forKey: .title)
 		subtitle = try values.decodeIfPresent(String.self, forKey: .subtitle)
 		description = try values.decodeIfPresent(String.self, forKey: .description)
-		meta_title = try values.decodeIfPresent(String.self, forKey: .meta_title)
-		meta_description = try values.decodeIfPresent(String.self, forKey: .meta_description)
+		metaTitle = try values.decodeIfPresent(String.self, forKey: .metaTitle)
+		metaDescription = try values.decodeIfPresent(String.self, forKey: .metaDescription)
 		coverPhoto = try values.decodeIfPresent(CoverPhoto.self, forKey: .coverPhoto)
 	}
 

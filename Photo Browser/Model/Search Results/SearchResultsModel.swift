@@ -10,20 +10,20 @@ import Foundation
 
 struct SearchResultsModel : Codable {
 	let total : Int?
-	let total_pages : Int?
+	let totalPages : Int?
 	let results : [Model]?
 
 	enum CodingKeys: String, CodingKey {
 
 		case total = "total"
-		case total_pages = "total_pages"
+		case totalPages = "total_pages"
 		case results = "results"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		total = try values.decodeIfPresent(Int.self, forKey: .total)
-		total_pages = try values.decodeIfPresent(Int.self, forKey: .total_pages)
+		totalPages = try values.decodeIfPresent(Int.self, forKey: .totalPages)
 		results = try values.decodeIfPresent([Model].self, forKey: .results)
 	}
 

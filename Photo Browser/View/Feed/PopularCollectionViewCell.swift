@@ -14,10 +14,10 @@ class PopularCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupCornerAndShadow()
+        setupCorner()
     }
     
-    func setupCornerAndShadow(){
+    func setupCorner(){
            contentView.layer.cornerRadius = 6.0
            contentView.layer.borderWidth = 1.0
            contentView.layer.borderColor = UIColor.clear.cgColor

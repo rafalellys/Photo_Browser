@@ -73,7 +73,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.selectionStyle = .none
         
-        if let validDate = photoRow.created_at {
+        if let validDate = photoRow.createdAt {
             cell.dateLabel.text = UtilityMethods.makeDateWithReadableMonth(dateTobeConverted: validDate)
         }
         
@@ -81,7 +81,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         if photoRow.description != nil {
             cell.descriptionLabel.text = photoRow.description
         } else {
-            cell.descriptionLabel.text = photoRow.alt_description
+            cell.descriptionLabel.text = photoRow.altDescription
         }
         
         if let thumb = photoRow.urls?.thumb {

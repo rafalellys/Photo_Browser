@@ -13,19 +13,19 @@ struct Sponsor : Codable {
 	let updated_at : String?
 	let username : String?
 	let name : String?
-	let first_name : String?
-	let last_name : String?
-	let twitter_username : String?
-	let portfolio_url : String?
+	let firstName : String?
+	let lastName : String?
+	let twitterUsername : String?
+	let portfolioUrl : String?
 	let bio : String?
 	let location : String?
 	let links : Links?
 	let profileImage : ProfileImage?
-	let instagram_username : String?
-	let total_collections : Int?
-	let total_likes : Int?
-	let total_photos : Int?
-	let accepted_tos : Bool?
+	let instagramUsername : String?
+	let totalCollections : Int?
+	let totalLikes : Int?
+	let totalPhotos : Int?
+	let acceptedTos : Bool?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -33,19 +33,19 @@ struct Sponsor : Codable {
 		case updated_at = "updated_at"
 		case username = "username"
 		case name = "name"
-		case first_name = "first_name"
-		case last_name = "last_name"
-		case twitter_username = "twitter_username"
-		case portfolio_url = "portfolio_url"
+		case firstName = "first_name"
+		case lastName = "last_name"
+		case twitterUsername = "twitter_username"
+		case portfolioUrl = "portfolio_url"
 		case bio = "bio"
 		case location = "location"
 		case links = "links"
 		case profileImage = "profile_image"
-		case instagram_username = "instagram_username"
-		case total_collections = "total_collections"
-		case total_likes = "total_likes"
-		case total_photos = "total_photos"
-		case accepted_tos = "accepted_tos"
+		case instagramUsername = "instagram_username"
+		case totalCollections = "total_collections"
+		case totalLikes = "total_likes"
+		case totalPhotos = "total_photos"
+		case acceptedTos = "accepted_tos"
 	}
 
 	init(from decoder: Decoder) throws {
@@ -54,19 +54,19 @@ struct Sponsor : Codable {
 		updated_at = try values.decodeIfPresent(String.self, forKey: .updated_at)
 		username = try values.decodeIfPresent(String.self, forKey: .username)
 		name = try values.decodeIfPresent(String.self, forKey: .name)
-		first_name = try values.decodeIfPresent(String.self, forKey: .first_name)
-		last_name = try values.decodeIfPresent(String.self, forKey: .last_name)
-		twitter_username = try values.decodeIfPresent(String.self, forKey: .twitter_username)
-		portfolio_url = try values.decodeIfPresent(String.self, forKey: .portfolio_url)
+		firstName = try values.decodeIfPresent(String.self, forKey: .firstName)
+		lastName = try values.decodeIfPresent(String.self, forKey: .lastName)
+		twitterUsername = try values.decodeIfPresent(String.self, forKey: .twitterUsername)
+		portfolioUrl = try values.decodeIfPresent(String.self, forKey: .portfolioUrl)
 		bio = try values.decodeIfPresent(String.self, forKey: .bio)
 		location = try values.decodeIfPresent(String.self, forKey: .location)
 		links = try values.decodeIfPresent(Links.self, forKey: .links)
 		profileImage = try values.decodeIfPresent(ProfileImage.self, forKey: .profileImage)
-		instagram_username = try values.decodeIfPresent(String.self, forKey: .instagram_username)
-		total_collections = try values.decodeIfPresent(Int.self, forKey: .total_collections)
-		total_likes = try values.decodeIfPresent(Int.self, forKey: .total_likes)
-		total_photos = try values.decodeIfPresent(Int.self, forKey: .total_photos)
-		accepted_tos = try values.decodeIfPresent(Bool.self, forKey: .accepted_tos)
+		instagramUsername = try values.decodeIfPresent(String.self, forKey: .instagramUsername)
+		totalCollections = try values.decodeIfPresent(Int.self, forKey: .totalCollections)
+		totalLikes = try values.decodeIfPresent(Int.self, forKey: .totalLikes)
+		totalPhotos = try values.decodeIfPresent(Int.self, forKey: .totalPhotos)
+		acceptedTos = try values.decodeIfPresent(Bool.self, forKey: .acceptedTos)
 	}
 
 }

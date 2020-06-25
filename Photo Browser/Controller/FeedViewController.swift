@@ -123,7 +123,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func segueToPhotoDetails(photo:Model) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         let photoDetailsVC = UIStoryboard.photoDetailsViewController()
         photoDetailsVC.photoModel = photo
         navigationController?.pushViewController(photoDetailsVC, animated: true)
