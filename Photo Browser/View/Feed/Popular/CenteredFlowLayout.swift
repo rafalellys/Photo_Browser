@@ -36,7 +36,9 @@ class CenteredFlowLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let collectionView = collectionView else { return nil }
-        let rectAttributes = super.layoutAttributesForElements(in: rect)!.map { $0.copy() as! UICollectionViewLayoutAttributes }
+        
+        guard let rectAttributes =  super.layoutAttributesForElements(in: rect).map( { $0 }) else { return nil }
+        
         let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.frame.size)
         
         // Zoom in on cell when it reaches the center of the screen

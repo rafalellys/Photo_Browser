@@ -28,10 +28,11 @@ final class NetworkManager {
     private let imageDataCache = NSCache<NSString, NSData>()
     
     //MARK: - Completion Handlers
-    typealias APIPhotoModelsCompletionHandler = (_ success: Bool, _ responseObject: [Model]?) -> Void
+    typealias PhotoAPICompletionHandler = (_ success: Bool, _ responseObject: [Model]?) -> Void
+    typealias ImageDataCompletionHandler = (_ success: Bool ,_ imgData: NSData?) -> Void
     
     //MARK: - Photos Data
-    func fetchPhotosData(orderBy: String, completion: @escaping APIPhotoModelsCompletionHandler) {
+    func fetchPhotosData(orderBy: String, completion: @escaping PhotoAPICompletionHandler) {
         
         guard let url = URL(string: unsplashBaseEndPoint + numberOfItemsPath + orderByPath + orderBy) else {
             debugPrint(APIMessages.invalidUrl)
@@ -49,10 +50,10 @@ final class NetworkManager {
         
         urlRequest.allHTTPHeaderFields = headers
         
-        let postSession = URLSession.shared
+        let urlSession = URLSession.shared
         urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         
-        let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
+        let task = urlSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
                 debugPrint(error?.localizedDescription ?? APIMessages.noData)
                 completion(false, nil)
@@ -78,7 +79,7 @@ final class NetworkManager {
         
     }
     
-    func fetchPhotosByTerm(searchTerm: String, completion: @escaping APIPhotoModelsCompletionHandler) {
+    func fetchPhotosByTerm(searchTerm: String, completion: @escaping PhotoAPICompletionHandler) {
         
         guard let url = URL(string: searchEndPoint + searchQueryPath + searchTerm) else {
             debugPrint(APIMessages.invalidUrl)
@@ -94,12 +95,12 @@ final class NetworkManager {
                   "Content-Type" : "application/json"
               ]
               
-              urlRequest.allHTTPHeaderFields = headers
+        urlRequest.allHTTPHeaderFields = headers
         
-        let postSession = URLSession.shared
+        let urlSession = URLSession.shared
         urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         
-        let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
+        let task = urlSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
                 debugPrint(error?.localizedDescription ?? APIMessages.noData)
                 completion(false, nil)
@@ -132,7 +133,7 @@ final class NetworkManager {
     }
     
     //MARK: - Image Data
-    func downloadImageData(imageURLString: String, completion: @escaping (_ success: Bool ,_ imgData: NSData?) -> Void) {
+    func downloadImageData(imageURLString: String, completion: @escaping ImageDataCompletionHandler) {
     
         if let cachedImageData = imageDataCache.object(forKey: "Image Data: \(imageURLString)" as NSString) {
                       debugPrint("image fetched from cache: \(imageURLString)")
@@ -148,10 +149,10 @@ final class NetworkManager {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethodTypes.get.rawValue
 
-        let postSession = URLSession.shared
+        let urlSession = URLSession.shared
         urlRequest.cachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
 
-        let task = postSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
+        let task = urlSession.dataTask(with: urlRequest as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
 
                 debugPrint(error?.localizedDescription ?? APIMessages.noData)
