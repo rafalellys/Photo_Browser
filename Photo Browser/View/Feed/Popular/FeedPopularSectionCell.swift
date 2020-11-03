@@ -20,7 +20,8 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
     let flowLayout = CenteredFlowLayout()
     var popularPhotos = [Model]()
     public weak var delegate: FeedPopularSectionCellDelegate?
-    
+    var feedLoader = FeedLoader(client: NetworkManager())
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,17 +34,13 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
         popularCollectionView.collectionViewLayout = flowLayout
         flowLayout.scrollDirection = .horizontal
         
-        NetworkManager.sharedInstance.fetchPhotosData(orderBy: "popular") { [weak self] (success, popularPhotos) in
-            
+        feedLoader.loadPopular { [weak self] (success, popularPhotos) in
             guard let self = self else {return}
-            
             if success {
-                if let popularPhotos = popularPhotos {
                     self.popularPhotos = popularPhotos
                     DispatchQueue.main.async {
                         self.popularCollectionView.reloadData()
                     }
-                }
             } else {
                 debugPrint("failure fetching")
             }
@@ -63,10 +60,7 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
         let photoRow = self.popularPhotos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {
-            NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
-                
-                guard let _ = self else {return}
-                
+            feedLoader.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
                 if success {
                     if let imageData = imgData {
                         DispatchQueue.main.async {

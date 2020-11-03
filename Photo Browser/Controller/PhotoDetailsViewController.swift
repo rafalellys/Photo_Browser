@@ -25,7 +25,7 @@ class PhotoDetailsViewController: BaseViewController {
     @IBOutlet weak var photoContainerHeight: NSLayoutConstraint!
     
     var photoModel: Model?
-    
+    var feedLoader = FeedLoader(client: NetworkManager())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,38 +54,33 @@ class PhotoDetailsViewController: BaseViewController {
         
         if let photoURLString = photoModel?.urls?.full {
             
-            NetworkManager.sharedInstance.downloadImageData(imageURLString: photoURLString) { [weak self] (success, imgData) in
-                
+            feedLoader.downloadImageData(imageURLString: photoURLString) { [weak self] (success, imgData) in
                 guard let self = self else {return}
-                
                 if success {
-                    if let imageData = imgData {
-                        DispatchQueue.main.async {
-                            if let img = UIImage(data: imageData as Data) {
-                                
-                                let ratio = img.size.width / img.size.height
-                                let newHeight = self.photoImageView.frame.width / ratio
-                                
-                                self.photoContainerHeight.constant = newHeight
-                                self.photoImageView.image = img.renderWith(newSize: CGSize(width: self.photoImageView.frame.width, height: newHeight))
-                                
+                        if let imageData = imgData {
+                            DispatchQueue.main.async {
+                                if let img = UIImage(data: imageData as Data) {
+                                    
+                                    let ratio = img.size.width / img.size.height
+                                    let newHeight = self.photoImageView.frame.width / ratio
+                                    
+                                    self.photoContainerHeight.constant = newHeight
+                                    self.photoImageView.image = img.renderWith(newSize: CGSize(width: self.photoImageView.frame.width, height: newHeight))
+                                    
+                                }
+                                self.hideLoadingIndicator()
                             }
-                            self.hideLoadingIndicator()
                         }
+                    } else {
+                        debugPrint("image fetch failed")
+                        self.photoImageView.image = UIImage(named:"placeholder")
+                        self.hideLoadingIndicator()
                     }
-                } else {
-                    debugPrint("image fetch failed")
-                    self.photoImageView.image = UIImage(named:"placeholder")
-                    self.hideLoadingIndicator()
-                }
             }
         }
         
         if let userPhotoURLString = photoModel?.user?.profileImage?.medium {
-            NetworkManager.sharedInstance.downloadImageData(imageURLString: userPhotoURLString) { [weak self] (success, imgData) in
-                
-                guard let self = self else {return}
-                
+            feedLoader.downloadImageData(imageURLString: userPhotoURLString) {(success, imgData) in
                 if success {
                     if let imageData = imgData {
                         DispatchQueue.main.async {
@@ -99,7 +94,6 @@ class PhotoDetailsViewController: BaseViewController {
                     self.userProfileImageView.image = UIImage(named: "placeholder")
                 }
             }
-            
         }
     }
     

@@ -14,13 +14,13 @@ class SearchViewController: BaseViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredPhotos = [Model]()
-    
+    var feedLoader = FeedLoader(client: NetworkManager())
     private var pendingRequestWorkItem: DispatchWorkItem?
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,23 +85,20 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let thumb = photoRow.urls?.thumb {
-            NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) { [weak self] (success, imgData) in
-                
-                guard let _ = self else {return}
-                
-                    if success {
-                        if let imageData = imgData {
-                            DispatchQueue.main.async {
-                                if let img = UIImage(data: imageData as Data) {
-                                    cell.searchCellImageView.image = img
-                                    cell.contentMode = .scaleAspectFill
-                                }
+            feedLoader.downloadImageData(imageURLString: thumb) {(success, imgData) in
+                if success {
+                    if let imageData = imgData {
+                        DispatchQueue.main.async {
+                            if let img = UIImage(data: imageData as Data) {
+                                cell.searchCellImageView.image = img
+                                cell.contentMode = .scaleAspectFill
                             }
                         }
-                    } else {
-                        debugPrint("image fetch failed")
-                        cell.searchCellImageView.image = UIImage(named:"placeholder")
                     }
+                } else {
+                    debugPrint("image fetch failed")
+                    cell.searchCellImageView.image = UIImage(named:"placeholder")
+                }
             }
         }
         
@@ -136,17 +133,15 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate{
     }
     
     
-    func searchTerm(){
+    func searchTerm() {
         if let searchTerm = searchController.searchBar.text {
             if searchTerm.count >= 3 {
-                NetworkManager.sharedInstance.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
+                feedLoader.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
                     guard let self = self else {return}
                     if success {
-                        if let filteredPhotos = filteredPhotos {
-                            self.filteredPhotos = filteredPhotos
-                            DispatchQueue.main.async {
-                                self.animateTable(self.searchResultsTableView)
-                            }
+                        self.filteredPhotos = filteredPhotos
+                        DispatchQueue.main.async {
+                            self.animateTable(self.searchResultsTableView)
                         }
                     } else {
                         debugPrint("failure fetching photos data")
@@ -157,10 +152,8 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate{
                 DispatchQueue.main.async {
                     self.searchResultsTableView.reloadData()
                 }
-                
             }
         }
-        
     }
     
     

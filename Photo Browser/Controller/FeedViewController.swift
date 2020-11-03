@@ -14,9 +14,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var feedCollectionView: UICollectionView!
     
     var photos = [Model]()
-    
     var feedLoader = FeedLoader(client: NetworkManager())
-    
     let flowLayout = FeedCollectionViewFlowLayout()
     
     override func viewDidLoad() {
@@ -77,16 +75,16 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var cellSize = CGSize()
-
+        
         switch indexPath.section {
         case 0:
             cellSize = CGSize(width: feedCollectionView.frame.size.width, height: 178)
-
+            
         case 1:
             let cellSide = feedCollectionView.frame.size.width/5
             
             cellSize = CGSize(width: cellSide, height: cellSide)
-
+            
         default: break
             
         }
@@ -149,7 +147,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
         else {
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCollectionViewCell", for: indexPath) as! LatestCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCollectionViewCell", for: indexPath) as! LatestCollectionViewCell
             
             cell.feedCellImageView.image = UIImage(named:"placeholder")
             
@@ -157,19 +155,16 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             if let thumb = photoRow.urls?.thumb {
                 
-                NetworkManager.sharedInstance.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
-                    
-                    guard let _ = self else {return}
-                    
+                feedLoader.downloadImageData(imageURLString: thumb) {(success, imgData) in
                     if success {
-                        if let imageData = imgData {
-                            DispatchQueue.main.async {
+                        DispatchQueue.main.async {
+                            if let imageData = imgData {
                                 if let img = UIImage(data: imageData as Data) {
                                     cell.feedCellImageView.image = img
                                     cell.contentMode = .scaleAspectFill
-                                } else {
-                                    cell.feedCellImageView.image = UIImage(named:"placeholder")
                                 }
+                            } else {
+                                cell.feedCellImageView.image = UIImage(named:"placeholder")
                             }
                         }
                     } else {
