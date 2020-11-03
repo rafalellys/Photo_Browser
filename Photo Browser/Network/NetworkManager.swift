@@ -9,12 +9,33 @@
 import UIKit
 import SystemConfiguration
 
+class FeedLoader {
+    
+    let client: NetworkManager
+    
+    init(client: NetworkManager) {
+        self.client = client
+    }
+    
+    func loadLatest(completion: @escaping (_ success: Bool, _ responseObject: [Model] ) -> Void ){
+        client.fetchPhotosData(orderBy: "latest") { [weak self] (success, photos) in
+            if success {
+                if let photos = photos {
+                    completion(true, photos)
+                }
+            } else {
+                completion(false, [])
+                debugPrint("failure fetching")
+            }
+        }
+    }
+}
 
-final class NetworkManager {
+public final class NetworkManager {
     
     //MARK: - Init
     static let sharedInstance = NetworkManager()
-    private init() {}
+//    private init() {}
     
     //MARK: - Endpoints
     private let unsplashBaseEndPoint = "https://api.unsplash.com/photos"

@@ -11,10 +11,11 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    
     @IBOutlet weak var feedCollectionView: UICollectionView!
     
     var photos = [Model]()
+    
+    var feedLoader = FeedLoader(client: NetworkManager())
     
     let flowLayout = FeedCollectionViewFlowLayout()
     
@@ -35,21 +36,16 @@ class FeedViewController: UIViewController {
         
         feedCollectionView.register(UINib(nibName: String(describing: FeedSectionHeaderView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedSectionHeaderView")
         
-        NetworkManager.sharedInstance.fetchPhotosData(orderBy: "latest") { [weak self] (success, photos) in
-            
-            guard let self = self else {return}
-            
+        feedLoader.loadLatest (completion: { success, data in
             if success {
-                if let photos = photos {
-                    self.photos = photos
-                    DispatchQueue.main.async {
-                        self.feedCollectionView.reloadData()
-                    }
+                self.photos = data
+                DispatchQueue.main.async {
+                    self.feedCollectionView.reloadData()
                 }
             } else {
                 debugPrint("failure fetching")
             }
-        }
+        })
     }
 }
 
