@@ -14,13 +14,17 @@ class SearchViewController: BaseViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredPhotos = [Model]()
-    var feedLoader = FeedLoader(client: NetworkManager())
+    
+    lazy var feedLoader: FeedLoader = {
+        let loader = FeedLoader(client: NetworkManager())
+        return loader
+    }()
+    
     private var pendingRequestWorkItem: DispatchWorkItem?
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +56,6 @@ class SearchViewController: BaseViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +70,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: String(describing: SearchResultsTableViewCell.self), for: indexPath) as! SearchResultsTableViewCell
         
         cell.searchCellImageView.image = UIImage(named:"placeholder")
-        
         
         let photoRow = self.filteredPhotos[indexPath.row]
         
@@ -87,12 +89,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         if let thumb = photoRow.urls?.thumb {
             feedLoader.downloadImageData(imageURLString: thumb) {(success, imgData) in
                 if success {
-                    if let imageData = imgData {
+                    if let imageData = imgData, let img = UIImage(data: imageData as Data) {
                         DispatchQueue.main.async {
-                            if let img = UIImage(data: imageData as Data) {
-                                cell.searchCellImageView.image = img
-                                cell.contentMode = .scaleAspectFill
-                            }
+                            cell.searchCellImageView.image = img
+                            cell.contentMode = .scaleAspectFill
                         }
                     }
                 } else {
@@ -113,9 +113,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let photoDetailsVC = UIStoryboard.photoDetailsViewController()
         photoDetailsVC.photoModel = photoRow
         navigationController?.pushViewController(photoDetailsVC, animated: true)
-        
     }
-    
 }
 
 
@@ -132,9 +130,8 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate{
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250), execute: requestWorkItem)
     }
     
-    
     func searchTerm() {
-        if let searchTerm = searchController.searchBar.text {
+        if let searchTerm = searchController.searchBar.text, searchTerm.count >= 3 {
             if searchTerm.count >= 3 {
                 feedLoader.fetchPhotosByTerm(searchTerm: searchTerm) { [weak self] (success, filteredPhotos) in
                     guard let self = self else {return}
@@ -158,13 +155,10 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate{
     
     
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchTerm = searchController.searchBar.text {
-            if searchTerm.count == 0 {
-                self.filteredPhotos.removeAll()
-                DispatchQueue.main.async {
-                    self.searchResultsTableView.reloadData()
-                }
-                
+        if let searchTerm = searchController.searchBar.text, searchTerm.count == 0 {
+            self.filteredPhotos.removeAll()
+            DispatchQueue.main.async {
+                self.searchResultsTableView.reloadData()
             }
         }
     }

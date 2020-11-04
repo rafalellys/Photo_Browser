@@ -57,6 +57,7 @@
 		059C4A28249FE682007366CC /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C4A27249FE682007366CC /* Storyboard+Extension.swift */; };
 		059C4A2D249FEF21007366CC /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059C4A2B249FEF21007366CC /* Raleway-VariableFont_wght.ttf */; };
 		059C4A2E249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059C4A2C249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf */; };
+		53012414255291C100876A6F /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53012413255291C100876A6F /* FeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		059C4A27249FE682007366CC /* Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		059C4A2B249FEF21007366CC /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		059C4A2C249FEF21007366CC /* Raleway-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		53012413255291C100876A6F /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				051DA388249D0742007B9AFE /* NetworkManager.swift */,
+				53012413255291C100876A6F /* FeedLoader.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				056A7B1E249D9E6A004FF4CD /* PopularCollectionViewCell.swift in Sources */,
 				0589847924A53B2E0005E2D6 /* FeedCollectionViewFlowLayout.swift in Sources */,
 				051DA39F249D2362007B9AFE /* CustomIndicatorView.swift in Sources */,
+				53012414255291C100876A6F /* FeedLoader.swift in Sources */,
 				051DA3B6249D4C73007B9AFE /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

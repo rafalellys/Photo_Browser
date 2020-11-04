@@ -14,8 +14,16 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var feedCollectionView: UICollectionView!
     
     var photos = [Model]()
-    var feedLoader = FeedLoader(client: NetworkManager())
-    let flowLayout = FeedCollectionViewFlowLayout()
+    
+    lazy var feedLoader: FeedLoader = {
+        let loader = FeedLoader(client: NetworkManager())
+        return loader
+    }()
+
+    lazy var flowLayout: FeedCollectionViewFlowLayout = {
+        let layout = FeedCollectionViewFlowLayout()
+        return layout
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,11 +166,9 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 feedLoader.downloadImageData(imageURLString: thumb) {(success, imgData) in
                     if success {
                         DispatchQueue.main.async {
-                            if let imageData = imgData {
-                                if let img = UIImage(data: imageData as Data) {
+                            if let imageData = imgData, let img = UIImage(data: imageData as Data) {
                                     cell.feedCellImageView.image = img
                                     cell.contentMode = .scaleAspectFill
-                                }
                             } else {
                                 cell.feedCellImageView.image = UIImage(named:"placeholder")
                             }
@@ -189,7 +195,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let photoDetailsVC = UIStoryboard.photoDetailsViewController()
         photoDetailsVC.photoModel = photo
         navigationController?.pushViewController(photoDetailsVC, animated: true)
-        
     }
     
 }

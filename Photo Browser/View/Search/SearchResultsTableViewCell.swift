@@ -39,5 +39,4 @@ class SearchResultsTableViewCell: UITableViewCell {
         descriptionLabel.textColor = .darkGray
         descriptionLabel.font = AppFonts.RalewayRegular.of(size: Size.h5.rawValue)
     }
-    
 }

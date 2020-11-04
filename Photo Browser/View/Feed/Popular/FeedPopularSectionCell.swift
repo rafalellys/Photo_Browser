@@ -21,7 +21,7 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
     var popularPhotos = [Model]()
     public weak var delegate: FeedPopularSectionCellDelegate?
     var feedLoader = FeedLoader(client: NetworkManager())
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,10 +37,10 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
         feedLoader.loadPopular { [weak self] (success, popularPhotos) in
             guard let self = self else {return}
             if success {
-                    self.popularPhotos = popularPhotos
-                    DispatchQueue.main.async {
-                        self.popularCollectionView.reloadData()
-                    }
+                self.popularPhotos = popularPhotos
+                DispatchQueue.main.async {
+                    self.popularCollectionView.reloadData()
+                }
             } else {
                 debugPrint("failure fetching")
             }
@@ -60,7 +60,7 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
         let photoRow = self.popularPhotos[indexPath.row]
         
         if let thumb = photoRow.urls?.thumb {
-            feedLoader.downloadImageData(imageURLString: thumb) {[weak self] (success, imgData) in
+            feedLoader.downloadImageData(imageURLString: thumb) {(success, imgData) in
                 if success {
                     if let imageData = imgData {
                         DispatchQueue.main.async {
@@ -85,4 +85,3 @@ class FeedPopularSectionCell: UICollectionViewCell, UICollectionViewDelegate, UI
         self.delegate?.itemSelected(photo:self.popularPhotos[indexPath.row])
     }
 }
-

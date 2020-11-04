@@ -23,5 +23,4 @@ class LatestCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
     }
-    
 }
